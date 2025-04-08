@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
+#    By: bproton <bproton@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:44:13 by proton            #+#    #+#              #
-#    Updated: 2025/04/04 18:07:34 by proton           ###   ########.fr        #
+#    Updated: 2025/04/08 12:54:39 by bproton          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	Bureaucrat
 CC		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
-SRC		=	main.cpp Bureaucrat.cpp MyExpr.cpp
+SRC		=	main.cpp Bureaucrat.cpp
 OBJS	=	$(SRC:.cpp=.o)
 
 all: $(NAME)

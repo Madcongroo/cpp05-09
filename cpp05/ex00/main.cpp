@@ -3,27 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:44:21 by proton            #+#    #+#             */
-/*   Updated: 2025/04/04 18:14:16 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/08 15:47:50 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "MyExpr.hpp"
 
 int	main(void)
 {
+	
 	try {
-		Bureaucrat h("Paul", 0);
-		if (h.getGrade() < 1)
-			throw myexpr;
+			Bureaucrat h("air", 24);
+			Bureaucrat j("loom", 151);
 	}
 
-	catch (std::exception& e)
+	catch (const Bureaucrat::GradeTooHighException& e)
 	{
-		std::cout << e << std::endl;
+		std::cout << e.what() << std::endl;
 	}
+	
+	catch (const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
+
+	std::cout << h << std::endl;
+
 	return (0);
 }
