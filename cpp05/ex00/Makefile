@@ -6,7 +6,30 @@
 #    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:44:13 by proton            #+#    #+#              #
-#    Updated: 2025/04/02 14:44:25 by proton           ###   ########.fr        #
+#    Updated: 2025/04/04 18:07:34 by proton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME	=	Bureaucrat
+CC		=	c++
+CFLAGS	=	-Wall -Wextra -Werror -std=c++98
+SRC		=	main.cpp Bureaucrat.cpp MyExpr.cpp
+OBJS	=	$(SRC:.cpp=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(OBJS)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: all
+
+.PHONY: clean flcean
