@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/04/09 11:33:10 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/09 16:01:14 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ void	Bureaucrat::decrementGrade()
 		throw (GradeTooLowException("Grade is too low it cannot be downgraded"));
 	}
 	this->_grade++;
+}
+
+void	Bureaucrat::signForm()
+{
+	
 }
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& instance)

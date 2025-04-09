@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/04/09 11:33:10 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/09 14:11:09 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,10 @@ Bureaucrat::Bureaucrat(const Bureaucrat& copy )
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& copy )
 {
-	std::cout << "assignation operator BUREAUCLAT called" << std::endl;
+	std::cout << "assignation operator BUREAUCRAT called" << std::endl;
 
 	if (this != &copy)
-	{
 		this->_grade = copy._grade;
-	}
 
 	return (*this);
 }

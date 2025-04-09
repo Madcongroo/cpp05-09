@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:24 by proton            #+#    #+#             */
-/*   Updated: 2025/04/09 11:33:18 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/09 15:59:45 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ class Bureaucrat
 		int				getGrade() const;
 		void			incrementGrade();
 		void			decrementGrade();
+		void			signForm();
 
 		class GradeTooHighException : std::exception
 		{
@@ -64,7 +65,6 @@ class Bureaucrat
 				virtual ~GradeTooLowException() throw();
 				virtual const char* what() const throw();
 		};
-
 };
 
 std::ostream&	operator<<( std::ostream& os, const Bureaucrat& instance );
