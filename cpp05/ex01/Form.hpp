@@ -3,26 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:35:47 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/09 15:43:38 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/10 10:49:28 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include "Bureaucrat.hpp"
+#include <iostream>
+#include <string>
 
-class   Form : public Bureaucrat
+class	Bureaucrat;
+
+class   Form
 {
 	private:
 
 		const std::string	_name;
 		bool				_signd;
-		const int			_gradeToSing = 21;
-		const int			_gradeToExec = 42;
+		const int			_gradeToSing;
+		const int			_gradeToExec;
 
 	public:
 
@@ -32,10 +35,10 @@ class   Form : public Bureaucrat
 		Form& operator=( const Form& copy );
 		
 		std::string	getName() const;
-		bool		getSignd() const;
-		const int	getGradeToSignd() const;
-		const int	getGradeToExec() const;
-		void		beSigned( Bureaucrat& instance );
+		std::string	getSignd() const;
+		int	getGradeToSignd() const;
+		int	getGradeToExec() const;
+		void		beSigned( const Bureaucrat& instance );
 
 		class	GradeTooHighException
 		{
