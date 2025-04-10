@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 13:35:47 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/10 15:17:04 by bproton          ###   ########.fr       */
+/*   Created: 2025/04/10 15:28:33 by bproton           #+#    #+#             */
+/*   Updated: 2025/04/10 15:30:56 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 class	Bureaucrat;
 
-class   Form
+class   AForm
 {
 	private:
 
@@ -29,10 +29,10 @@ class   Form
 
 	public:
 
-		Form();
-		Form( const std::string name );
-		Form( const Form& copy );
-		Form& operator=( const Form& copy );
+		AForm();
+		AForm( const std::string name );
+		AForm( const AForm& copy );
+		AForm& operator=( const AForm& copy );
 		
 		std::string	getName() const;
 		std::string	getSignd() const;
@@ -54,6 +54,6 @@ class   Form
 		};
 };
 
-std::ostream& operator<<( std::ostream& os, const Form& instance );
+std::ostream& operator<<( std::ostream& os, const AForm& instance );
 
 #endif
