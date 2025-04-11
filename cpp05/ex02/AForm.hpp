@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:33 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/11 11:09:49 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/11 15:04:27 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ class   AForm
 		};
 
 		class GradeTooLowException : std::exception
+		{
+			public:
+			virtual const char* what() const throw();
+		};
+
+		class NotSignedFormException : std::exception
 		{
 			public:
 			virtual const char* what() const throw();

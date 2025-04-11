@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:54 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/11 11:24:27 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/11 15:19:28 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 #include <iostream>
 #include <string>
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
-class   ShrubberyCreationForm
+class   ShrubberyCreationForm : public AForm
 {
 	private:
 	
+		bool		_signd;
+		std::string	_target;
 		const int	_gradeToSign;
 		const int	_gradeToExec;
 
@@ -30,6 +33,7 @@ class   ShrubberyCreationForm
 		ShrubberyCreationForm( std::string target );
 		ShrubberyCreationForm( const ShrubberyCreationForm& copy );
 		ShrubberyCreationForm& operator=( const ShrubberyCreationForm& copy );
+		~ShrubberyCreationForm();
 
 		void	execute( Bureaucrat const & executor ) const;
 };

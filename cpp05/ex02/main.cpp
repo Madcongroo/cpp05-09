@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:44:21 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 16:52:16 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/11 13:21:27 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(void)
 {
 	try {
-			AForm	f;
 			Bureaucrat j("nom", 42);
 			j.signForm(f);
 			j.execForm(f);
