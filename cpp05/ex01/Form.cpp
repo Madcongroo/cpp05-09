@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:42:31 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/10 15:19:20 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/11 10:15:19 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ Form& Form::operator=( const Form& copy )
 	if (this != &copy)
 		this->_signd = copy._signd;
 	return (*this);
+}
+
+Form::~Form()
+{
+	std::cout << "in Form destructor" << std::endl;
 }
 
 std::string	Form::getName() const

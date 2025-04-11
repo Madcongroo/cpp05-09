@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:24 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 15:16:32 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/11 10:27:01 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <iostream>
 #include <string>
 #include <exception>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class	Form;
+class	AForm;
 
 class	Bureaucrat
 {
@@ -39,8 +39,9 @@ class	Bureaucrat
 		int				getGrade() const;
 		void			incrementGrade();
 		void			decrementGrade();
-		void			signForm( Form& instance );
-		void			execForm( Form& instance );
+		void			signForm( AForm& instance );
+		void			execForm( AForm& instance );
+		void			executeForm( AForm const& form );
 
 		class GradeTooHighException : std::exception
 		{

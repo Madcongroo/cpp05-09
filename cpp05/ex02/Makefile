@@ -3,17 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bproton <bproton@student.42.fr>            +#+  +:+       +#+         #
+#    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:44:13 by proton            #+#    #+#              #
-#    Updated: 2025/04/10 14:15:08 by bproton          ###   ########.fr        #
+#    Updated: 2025/04/10 16:52:53 by proton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	Bureaucrat
 CC		=	c++
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
-SRC		=	main.cpp Bureaucrat.cpp Form.cpp
+SRC		=	main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
+			RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+
 OBJS	=	$(SRC:.cpp=.o)
 
 all: $(NAME)

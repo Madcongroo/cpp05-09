@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 15:16:10 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/10 16:52:02 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,12 @@ void	Bureaucrat::decrementGrade()
 	this->_grade++;
 }
 
-void	Bureaucrat::signForm( Form& instance )
+void	Bureaucrat::signForm( AForm& instance )
 {
 	instance.beSigned(*this);
 }
 
-void	Bureaucrat::execForm( Form& instance )
+void	Bureaucrat::execForm( AForm& instance )
 {
 	instance.beExec(*this);
 }

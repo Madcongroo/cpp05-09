@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:33 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/10 15:30:56 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/11 11:09:49 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@ class   AForm
 		AForm( const std::string name );
 		AForm( const AForm& copy );
 		AForm& operator=( const AForm& copy );
+		virtual ~AForm();
 		
-		std::string	getName() const;
-		std::string	getSignd() const;
-		int			getGradeToSignd() const;
-		int			getGradeToExec() const;
-		void		beSigned( const Bureaucrat& instance );
-		void		beExec( const Bureaucrat& instance );
+		std::string		getName() const;
+		std::string		getSignd() const;
+		int				getGradeToSignd() const;
+		int				getGradeToExec() const;
+		void			beSigned( const Bureaucrat& instance );
+		void			beExec( const Bureaucrat& instance );
+		virtual void	execute( Bureaucrat const & executor ) const = 0;
 
 		class	GradeTooHighException : std::exception
 		{

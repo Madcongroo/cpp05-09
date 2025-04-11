@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:44:21 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 15:24:39 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/10 16:52:16 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(void)
 {
 	try {
-			Form	f;
+			AForm	f;
 			Bureaucrat j("nom", 42);
 			j.signForm(f);
 			j.execForm(f);
@@ -32,12 +32,12 @@ int	main(void)
 		std::cout << e.what() << std::endl;
 	}
 
-	catch ( const Form::GradeTooHighException& e)
+	catch ( const AForm::GradeTooHighException& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	catch ( const Form::GradeTooLowException& e )
+	catch ( const AForm::GradeTooLowException& e )
 	{
 		std::cout << e.what() << std::endl;
 	}

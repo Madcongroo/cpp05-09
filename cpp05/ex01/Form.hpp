@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 13:35:47 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/10 15:17:04 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/11 10:15:25 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class   Form
 		Form( const std::string name );
 		Form( const Form& copy );
 		Form& operator=( const Form& copy );
+		~Form();
 		
 		std::string	getName() const;
 		std::string	getSignd() const;
