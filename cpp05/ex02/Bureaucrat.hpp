@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:34:24 by proton            #+#    #+#             */
-/*   Updated: 2025/04/11 10:27:01 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/11 16:46:18 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class	Bureaucrat
 		void			decrementGrade();
 		void			signForm( AForm& instance );
 		void			execForm( AForm& instance );
-		void			executeForm( AForm const& form );
+		void			executeForm( AForm const& form ) const;
 
 		class GradeTooHighException : std::exception
 		{

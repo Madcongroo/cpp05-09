@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 16:52:02 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/12 15:31:34 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,4 +145,12 @@ Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
 const	char* Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return (this->_errorMsg.c_str());
+}
+
+void	Bureaucrat::executeForm( const AForm& form ) const
+{
+	form.execute(*this);
+
+	std::cout << this->_name << " executed " << form.getName() << std::endl;
+	
 }

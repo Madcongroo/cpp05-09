@@ -6,24 +6,24 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:36 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/11 10:15:16 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/12 17:02:58 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-AForm::AForm() : _name("base AForm"), _signd(0), _gradeToSign(21), _gradeToExec(42)
+AForm::AForm() : _name("base AForm"), _signd(0), _gradeToSign(150), _gradeToExec(150)
 {
 	std::cout << "in AForm base constructor" << std::endl;
 
 	return ;
 }
 
-AForm::AForm( const std::string name ) : _name(name), _signd(0), _gradeToSign(21), _gradeToExec(42)
+AForm::AForm( const std::string name, const int sign, const int exec ) : _name(name), _signd(0), _gradeToSign(sign), _gradeToExec(exec)
 {
 	std::cout << "in direct assignation constructor of AForm" << std::endl;
-	
+
 	return ;
 }
 
@@ -96,6 +96,11 @@ const char* AForm::GradeTooHighException::what() const throw()
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("Grade is too low");
+}
+
+const char* AForm::NotSignedFormException::what() const throw()
+{
+    return ("Form is unfortunatly no signed");
 }
 
 std::ostream& operator<<( std::ostream& os, const AForm& instance )

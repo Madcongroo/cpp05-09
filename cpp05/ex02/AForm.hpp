@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:33 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/11 15:04:27 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/12 16:50:39 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class   AForm
 	public:
 
 		AForm();
-		AForm( const std::string name );
+		AForm( const std::string name, const int sign, const int exec );
 		AForm( const AForm& copy );
 		AForm& operator=( const AForm& copy );
 		virtual ~AForm();
