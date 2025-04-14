@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 11:57:14 by proton            #+#    #+#             */
-/*   Updated: 2025/04/14 09:29:40 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/14 14:42:36 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 class	Intern
 {
@@ -25,7 +28,7 @@ class	Intern
 		Intern& operator=( const Intern& copy );
 		~Intern();
 
-		void	makeForm( std::string formName, std::string target );
+		AForm*	makeForm( std::string formName, std::string target );
 		
 		class	InternFormCreationException : std::exception
 		{
