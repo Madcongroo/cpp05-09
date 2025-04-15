@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:41:02 by proton            #+#    #+#             */
-/*   Updated: 2025/04/15 10:18:22 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/15 12:04:31 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ ScalarConverter::~ScalarConverter()
 
 void ScalarConverter::convert( std::string scalar )
 {
-
+    (void)scalar;
 }
 
