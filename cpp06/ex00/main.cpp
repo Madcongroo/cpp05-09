@@ -3,29 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:40:54 by proton            #+#    #+#             */
-/*   Updated: 2025/04/16 11:18:06 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/16 13:34:02 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-int	main()
+int	main(int ac, char **av)
 {
-	std::string input;
-
-	std::cout << "Insert an input" << std::endl;
-	std::cin >> input;
-
-	if (std::cin.eof())
+	if (ac != 2)
 	{
-		std::cerr << "Ctrl-D pressed" << std::endl;
+		std::cerr << "Not enough arguments" << std::endl;
 		return (1);
 	}
 
-	ScalarConverter::convert(input);
+	ScalarConverter::convert(av[1]);
 	
 	return (0);
 }
