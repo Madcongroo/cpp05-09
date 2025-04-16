@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:41:02 by proton            #+#    #+#             */
-/*   Updated: 2025/04/15 12:04:31 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/16 13:19:45 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+
+int	parseScalar( std::string input );
 
 ScalarConverter::ScalarConverter()
 {
@@ -39,6 +41,14 @@ ScalarConverter::~ScalarConverter()
 
 void ScalarConverter::convert( std::string scalar )
 {
-    (void)scalar;
+    if (scalar.empty())
+    {
+        std::cout << "Input is empty" << std::endl;
+        return ;
+    }
+
+    int num = static_cast <int>(scalar);
+    
+    
 }
 

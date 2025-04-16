@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:41:05 by proton            #+#    #+#             */
-/*   Updated: 2025/04/15 10:36:40 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/16 11:12:04 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@
 
 class   ScalarConverter
 {
-	public:
+	protected:
+
 		ScalarConverter();
 		ScalarConverter( const ScalarConverter& copy );
 		ScalarConverter& operator=( const ScalarConverter& copy );
 		~ScalarConverter();
 
+	public:
+	
 		static void convert( std::string scalar );
 };
 

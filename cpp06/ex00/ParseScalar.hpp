@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ParseScalar.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 17:40:54 by proton            #+#    #+#             */
-/*   Updated: 2025/04/16 11:18:06 by proton           ###   ########.fr       */
+/*   Created: 2025/04/16 11:11:28 by proton            #+#    #+#             */
+/*   Updated: 2025/04/16 11:22:30 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PARSESCALAR_HPP
+#define PARSESCALAR_HPP
+
 #include "ScalarConverter.hpp"
 
-int	main()
-{
-	std::string input;
+int	parseScalar( std::string input );
 
-	std::cout << "Insert an input" << std::endl;
-	std::cin >> input;
-
-	if (std::cin.eof())
-	{
-		std::cerr << "Ctrl-D pressed" << std::endl;
-		return (1);
-	}
-
-	ScalarConverter::convert(input);
-	
-	return (0);
-}
+#endif
