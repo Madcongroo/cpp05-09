@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ParseScalar.hpp"
+#define	BAD_INPUT 0
 
 void	displayLiteral( std::string input )
 {
@@ -38,18 +39,30 @@ int	isInt( int num )
 	return (0);
 }
 
-double	transformDouble( double num )
+long double	transformDouble( std::string input )
 {
-	(void)num;
-	return (0);
+	size_t		comma = 0;
+	size_t		special = 0;
+	long double	num = 0;
+	
+	for (size_t i = 0; input[i]; i++)
+	{
+		if (input[i] == '+' || input[i] == '-')
+			special += 1;
+		else if (input[i] == '.')
+			comma += 1;
+		num = num * 10 + (input[i] - '0');
+	}
+	if (special > 1 || comma > 1)
+		return (BAD_INPUT);
+
+	return (num);
 }
 
 int	checkInput( std::string input )
 {
 	int	count = 0;
-
-	// if (input[0] != '-' && input[0] != '+' && (input[0] < 0 || input[0] > 9))
-	// 	count += 1;
+// if (input[0] != '-' && input[0] != '+' && (input[0] < 0 || input[0] > 9)) count += 1;
 		
 	for (size_t i = 0; input[i]; i++)
 	{
@@ -64,13 +77,16 @@ int	checkInput( std::string input )
 
 int	parseScalar( std::string input )
 {
-	
+	std::cout << input << std::endl;	
 	if (input.length() > 1)
 	{
 		if (checkInput(input) == -1)
 			return (displayLiteral("Non displayable"), 0);
-		double num = atof(input.c_str());
-		// num = transformDouble(num);
+		long double num = transformDouble( input );
+		if (num == BAD_INPUT)
+			return (displayLiteral("Non displayable"), 0);
+		std::cout << std::fixed;
+		std::cout << num << std::endl;	
 		if (num <= INT_MAX || num >= INT_MIN)
 			return (isInt(static_cast<int>(num)));
 	}
