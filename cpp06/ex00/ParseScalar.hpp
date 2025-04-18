@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ParseScalar.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:11:28 by proton            #+#    #+#             */
-/*   Updated: 2025/04/16 14:40:03 by bproton          ###   ########.fr       */
+/*   Updated: 2025/04/18 10:50:27 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <limits.h>
 
 #include "ScalarConverter.hpp"
 
 int	parseScalar( std::string input );
-int detectType( std::string input );
 
 #endif
