@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ParseScalar.hpp"
-#define	BAD_INPUT 0
 
 void	displayLiteral( std::string input )
 {
@@ -39,42 +38,6 @@ int	isInt( long double num )
 	return (0);
 }
 
-long double	transformDouble( std::string input )
-{
-	size_t		comma = 0;
-	size_t		special = 0;
-	long double	num = 0;
-	
-	for (size_t i = 0; input[i]; i++)
-	{
-		if (input[i] == '+' || input[i] == '-')
-			special += 1;
-		else if (input[i] == '.')
-			comma += 1;
-		num = num * 10 + (input[i] - '0');
-	}
-	if (special > 1 || comma > 1)
-		return (BAD_INPUT);
-
-	return (num);
-}
-
-int	checkInput( std::string input )
-{
-	int	count = 0;
-// if (input[0] != '-' && input[0] != '+' && (input[0] < 0 || input[0] > 9)) count += 1;
-		
-	for (size_t i = 0; input[i]; i++)
-	{
-		if (input[i] < '0' || input[i] > '9')
-			count += 1;
-	}
-	if (count >= 2)
-		return (-1);
-
-	return (0);
-}
-
 int	isFloat( float num )
 {
 	std::cout << "char : Non displayable" << std::endl;
@@ -84,25 +47,76 @@ int	isFloat( float num )
 	return (0);
 }
 
+int	parseInput( std::string input )
+{
+	size_t	isFloat = 0;
+	size_t	point = 0;
+	int	i = 0;
+	
+	if (input.length() == 1 && input[0] >= '0' && input[0] <= '9')
+		return (ISINT);
+
+	else if (input.length() == 1 && input[0] >= 0 && input[i] <= 127)
+		return (ISCHAR);
+
+	else if (input == "inff" || input == "-inff" || input == "+inff" || input == "nanf")
+		return (ISFLOAT);
+
+	else if (input == "inf" || input == "-inf" || input == "+inf" || input == "nan")
+		return (ISDOUBLE);
+
+	if (input[0] == '-' || input[0] == '+')
+		i = 1;
+
+	while (input[i])
+	{
+		if ((input[i] != 'f' && input[i] != '.') && (input[i] < '0' || input[i] > '9'))
+ 			return (ISBAD);
+		if (input[i] == '.')
+			point += 1;
+		else if (input[i] == 'f' && i != input.length())
+			return (ISBAD);
+		else if (input[i] == 'f' && i == input.length())
+			return (ISFLOAT);
+		i++;	
+	}
+	if (point > 1)
+		return (ISBAD);	
+	return (ISOTHER);
+}
+
+void	dispatchInput( std::string input, int returnedValue )
+{
+	long double	newValue = 0;
+
+	std::cout << std::fixed;
+	newValue = atof(input.c_str());
+	if (newValue == 0 || returnedValue == ISBAD)
+		displayLiteral("Non displayable");
+	else if ((newValue <= INT_MAX && newValue >= INT_MIN) || returnedValue == ISINT)
+		isInt(newValue);
+	else if (newValue <= FLT_MAX && newValue >= FLT_MIN || returnedValue == ISFLOAT)
+		isFloat(newValue);
+	else if ((new_value <= DOUBLE_MAX && newValue >= DOUBLE_MIN) || returnedValue == ISDOUBLE)
+
+}
+
 int	parseScalar( std::string input )
 {
-	double		newInput = 0;
+	double	newInput = 0;
+	int	returnValue = 0;
 
-	if (input.length() > 1)
-	{
-		//if (checkInput(input) == -1)
-		//	return (displayLiteral("Non displayable"), 0);
-		newInput = atof(input.c_str());
-		std::cout << std::fixed;
-		std::cout << newInput << std::endl;
-		//if (num <= INT_MAX || num >= INT_MIN)
-		//{
-		//	return (isInt(num));
-		//}
-		//else if (num <= FLT_MAX || num >= FLT_MIN) 
-		//	return (isFloat(static_cast<float>(num)));
+	returnValue = parseInput( input );
+	dispatchInput( input, returnValue );
+	std::cout << std::fixed;
+	newInput = atof(input.c_str());
+	if (newInput == 0)
+		displayLiteral("Non displayable");
+	else if (newInput <= INT_MAX || newInput >= INT_MIN)
+		return (isInt(newInput));
+	else if (
+		
 
-	}
 
 
 	return (0);

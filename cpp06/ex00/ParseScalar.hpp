@@ -22,6 +22,16 @@
 
 #include "ScalarConverter.hpp"
 
+enum	WhatValue
+{
+	ISCHAR		= 0,
+	ISINT		= 1,
+	ISFLOAT		= 2,
+	ISDOUBLE	= 3,
+	ISBAD		= 4,
+	ISOTHER		= 5
+};
+
 int	parseScalar( std::string input );
 
 #endif
