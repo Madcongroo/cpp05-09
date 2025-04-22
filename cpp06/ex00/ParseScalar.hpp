@@ -17,6 +17,8 @@
 #include <string>
 #include <iomanip>
 #include <limits.h>
+#include <float.h>
+#include <sstream>
 
 #include "ScalarConverter.hpp"
 

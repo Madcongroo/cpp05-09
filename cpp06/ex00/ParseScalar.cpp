@@ -25,14 +25,14 @@ void	displayLiteral( std::string input )
 	}
 }
 
-int	isInt( int num )
+int	isInt( long double num )
 {
 	if (num > 31 && num < 127)
 		std::cout << "char : " << "'" << static_cast<char>(num) << "'" << std::endl;
 	else
 		std::cout << "char : Non displayable" << std::endl;
 
-	std::cout << "int : " << num << std::endl;
+	std::cout << "int : " << static_cast<int>(num) << std::endl;
 	std::cout << std::fixed << std::setprecision(1) << "float : " << static_cast<float>(num) << "f" << std::endl;
 	std::cout << "double : " << static_cast<double>(num) << std::endl;
 	std::cout << std::fixed << std::setprecision(0);
@@ -75,20 +75,33 @@ int	checkInput( std::string input )
 	return (0);
 }
 
+int	isFloat( float num )
+{
+	std::cout << "char : Non displayable" << std::endl;
+	std::cout << "int : " << static_cast<int>(num) << std::endl;
+	std::cout << "float : " << num << "f" << std::endl;
+	std::cout << "double : " << static_cast<double>(num) << std::endl;
+	return (0);
+}
+
 int	parseScalar( std::string input )
 {
-	std::cout << input << std::endl;	
+	double		newInput = 0;
+
 	if (input.length() > 1)
 	{
-		if (checkInput(input) == -1)
-			return (displayLiteral("Non displayable"), 0);
-		long double num = transformDouble( input );
-		if (num == BAD_INPUT)
-			return (displayLiteral("Non displayable"), 0);
+		//if (checkInput(input) == -1)
+		//	return (displayLiteral("Non displayable"), 0);
+		newInput = atof(input.c_str());
 		std::cout << std::fixed;
-		std::cout << num << std::endl;	
-		if (num <= INT_MAX || num >= INT_MIN)
-			return (isInt(static_cast<int>(num)));
+		std::cout << newInput << std::endl;
+		//if (num <= INT_MAX || num >= INT_MIN)
+		//{
+		//	return (isInt(num));
+		//}
+		//else if (num <= FLT_MAX || num >= FLT_MIN) 
+		//	return (isFloat(static_cast<float>(num)));
+
 	}
 
 
