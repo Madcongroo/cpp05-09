@@ -12,7 +12,29 @@
 
 #include "ParseScalar.hpp"
 
-void	displayLiteral( std::string input )
+int	getPrecision( std::string input )
+{
+	int	i = 0;
+	int	j = 0;
+	int	count = 0;
+	
+	while (input[i])
+	{
+		if (input[i] == '.')
+		{
+			j = i + 1;
+			while (input[j] || input[j] == 'f')
+			{
+				count++;
+				j++;
+			}
+		}
+		i++;
+	}
+	return (count);
+}
+
+void	nonDisplayable( std::string input )
 {
 	if (input == "Non displayable")
 	{
@@ -24,8 +46,23 @@ void	displayLiteral( std::string input )
 	}
 }
 
+int	isChar( std::string input, long double num )
+{
+	if (input[0] >= 0 && input[0] <= 32 && input[0] == 127)
+		std::cout << "char : Non displayable" << std::endl;
+	else
+		std::cout << "char : '" << static_cast<char>(num) << "'" << std::endl;
+	std::cout << std::fixed << std::setprecision(0);
+	std::cout << "int : " << static_cast<int>(num) << std::endl;
+	std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float : " << static_cast<float>(num) << "f" << std::endl;
+	std::cout << "double : " << static_cast<double>(num) << std::endl;
+	return (0);
+}
+
 int	isInt( long double num )
 {
+	std::cout << "is in int" << std::endl;
 	if (num > 31 && num < 127)
 		std::cout << "char : " << "'" << static_cast<char>(num) << "'" << std::endl;
 	else
@@ -38,27 +75,43 @@ int	isInt( long double num )
 	return (0);
 }
 
-int	isFloat( float num )
+int	isFloat( long double num, int precision )
 {
+	std::cout << "is in float" << std::endl;
 	std::cout << "char : Non displayable" << std::endl;
+	std::cout << std::fixed << std::setprecision(0);
 	std::cout << "int : " << static_cast<int>(num) << std::endl;
+	std::cout << std::fixed << std::setprecision(precision);
 	std::cout << "float : " << num << "f" << std::endl;
 	std::cout << "double : " << static_cast<double>(num) << std::endl;
+	std::cout << std::fixed << std::setprecision(0);
+	return (0);
+}
+
+int	isDouble( long double num, int precision )
+{
+	std::cout << "is in double" << std::endl;
+	std::cout << "char : Non displayable" << std::endl;
+	std::cout << std::fixed << std::setprecision(0);
+	std::cout << "int : " << static_cast<int>(num) << std::endl; 
+	std::cout << std::fixed << std::setprecision(precision);
+	std::cout << "float : " << static_cast<float>(num) << "f" << std::endl;
+	std::cout << "double : " << num << std::endl;
+	std::cout << std::fixed << std::setprecision(0);
 	return (0);
 }
 
 int	parseInput( std::string input )
 {
-	size_t	isFloat = 0;
 	size_t	point = 0;
-	int	i = 0;
+	size_t	i = 0;
 	
 	if (input.length() == 1 && input[0] >= '0' && input[0] <= '9')
 		return (ISINT);
 
-	else if (input.length() == 1 && input[0] >= 0 && input[i] <= 127)
-		return (ISCHAR);
-
+//	else if (input.size() == 1 && (input[0] >= 0 && input[0] <= 127))
+//		return (ISCHAR);
+//
 	else if (input == "inff" || input == "-inff" || input == "+inff" || input == "nanf")
 		return (ISFLOAT);
 
@@ -74,8 +127,12 @@ int	parseInput( std::string input )
  			return (ISBAD);
 		if (input[i] == '.')
 			point += 1;
-		else if (input[i] == 'f' && i != input.length())
+		else if (input[i] == 'f' && i != (input.length() - 1))
+		{
+			std::cout << "i value " << i << std::endl;
+			std::cout << "input len " << input.length() << std::endl;
 			return (ISBAD);
+		}
 		else if (input[i] == 'f' && i == input.length())
 			return (ISFLOAT);
 		i++;	
@@ -88,35 +145,34 @@ int	parseInput( std::string input )
 void	dispatchInput( std::string input, int returnedValue )
 {
 	long double	newValue = 0;
+	int		precision = 0;
 
 	std::cout << std::fixed;
 	newValue = atof(input.c_str());
 	if (newValue == 0 || returnedValue == ISBAD)
-		displayLiteral("Non displayable");
+	{
+		nonDisplayable("Non displayable");	
+		return ;
+	}
+
+	precision = getPrecision(input);
+
+	if (returnedValue == ISCHAR)
+		isChar(input, newValue);
 	else if ((newValue <= INT_MAX && newValue >= INT_MIN) || returnedValue == ISINT)
 		isInt(newValue);
-	else if (newValue <= FLT_MAX && newValue >= FLT_MIN || returnedValue == ISFLOAT)
-		isFloat(newValue);
-	else if ((new_value <= DOUBLE_MAX && newValue >= DOUBLE_MIN) || returnedValue == ISDOUBLE)
-
+	else if ((newValue <= FLT_MAX && newValue >= FLT_MIN) || returnedValue == ISFLOAT)
+		isFloat(newValue, precision);
+	else if ((newValue <= DBL_MAX && newValue >= DBL_MIN) || returnedValue == ISDOUBLE)
+		isDouble(newValue, precision);	
 }
 
 int	parseScalar( std::string input )
 {
-	double	newInput = 0;
 	int	returnValue = 0;
 
 	returnValue = parseInput( input );
 	dispatchInput( input, returnValue );
-	std::cout << std::fixed;
-	newInput = atof(input.c_str());
-	if (newInput == 0)
-		displayLiteral("Non displayable");
-	else if (newInput <= INT_MAX || newInput >= INT_MIN)
-		return (isInt(newInput));
-	else if (
-		
-
 
 
 	return (0);
