@@ -101,22 +101,51 @@ int	isDouble( long double num, int precision )
 	return (0);
 }
 
+int	checkIfInt( std::string input )
+{
+	int	number = 0;
+	size_t	i = 0;
+	size_t	pointFlag = 0;
+
+	if (input[0] == '-' || input[0] == '+')
+		i = 1;
+
+	else if (input.length() == 1 && isdigit(input[0]))
+		return (ISINT);
+
+	while (input[i])
+	{
+		if (input[i] == '.')
+			pointFlag += 1;
+		else if (!isdigit(input[i]))
+			return (0);
+	}
+
+	std::cout << std::fixed;
+	number = atof(input.c_str());
+
+	if (pointFlag > 1)
+		return (0);
+
+	else if (number >= INT_MIN || number <= INT_MAX)
+		return (ISINT);
+
+	return (0);
+}
+
 int	parseInput( std::string input )
 {
 	size_t	point = 0;
 	size_t	i = 0;
-	
-	if (input.length() == 1 && input[0] >= '0' && input[0] <= '9')
-		return (ISINT);
 
-//	else if (input.size() == 1 && (input[0] >= 0 && input[0] <= 127))
-//		return (ISCHAR);
-//
-	else if (input == "inff" || input == "-inff" || input == "+inff" || input == "nanf")
+	if (input == "inff" || input == "-inff" || input == "+inff" || input == "nanf")
 		return (ISFLOAT);
 
 	else if (input == "inf" || input == "-inf" || input == "+inf" || input == "nan")
 		return (ISDOUBLE);
+
+	else if (input.length() == 1 && (input[0] > 0 && input[0] <= 127))
+		return (ISCHAR);
 
 	if (input[0] == '-' || input[0] == '+')
 		i = 1;
@@ -124,22 +153,20 @@ int	parseInput( std::string input )
 	while (input[i])
 	{
 		if ((input[i] != 'f' && input[i] != '.') && (input[i] < '0' || input[i] > '9'))
- 			return (ISBAD);
-		if (input[i] == '.')
-			point += 1;
-		else if (input[i] == 'f' && i != (input.length() - 1))
-		{
-			std::cout << "i value " << i << std::endl;
-			std::cout << "input len " << input.length() << std::endl;
 			return (ISBAD);
-		}
-		else if (input[i] == 'f' && i == input.length())
+		else if (input[i] == '.')
+			point += 1;
+		else if (input[i] == 'f' && i == input.length() - 1)
 			return (ISFLOAT);
 		i++;	
 	}
-	if (point > 1)
-		return (ISBAD);	
-	return (ISOTHER);
+	if (point == 1)
+		return (ISDOUBLE);
+
+	else if (checkIfInt( input ))
+		return (ISINT);
+
+	return (ISBAD);
 }
 
 void	dispatchInput( std::string input, int returnedValue )
@@ -147,24 +174,15 @@ void	dispatchInput( std::string input, int returnedValue )
 	long double	newValue = 0;
 	int		precision = 0;
 
-	std::cout << std::fixed;
-	newValue = atof(input.c_str());
-	if (newValue == 0 || returnedValue == ISBAD)
-	{
-		nonDisplayable("Non displayable");	
-		return ;
-	}
-
 	precision = getPrecision(input);
 
-	if (returnedValue == ISCHAR)
-		isChar(input, newValue);
-	else if ((newValue <= INT_MAX && newValue >= INT_MIN) || returnedValue == ISINT)
-		isInt(newValue);
-	else if ((newValue <= FLT_MAX && newValue >= FLT_MIN) || returnedValue == ISFLOAT)
-		isFloat(newValue, precision);
-	else if ((newValue <= DBL_MAX && newValue >= DBL_MIN) || returnedValue == ISDOUBLE)
-		isDouble(newValue, precision);	
+	switch (whatValue)
+	{
+		case (ISCHAR)
+		(isChar(input, num);
+		break ;
+	}
+	
 }
 
 int	parseScalar( std::string input )
