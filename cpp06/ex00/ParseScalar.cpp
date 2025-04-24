@@ -36,14 +36,10 @@ int	getPrecision( std::string input )
 
 void	nonDisplayable( std::string input )
 {
-	if (input == "Non displayable")
-	{
-		std::cout << "char : " << input << std::endl;
-		std::cout << "int : " << input << std::endl;
-		std::cout << "float : " << input  << std::endl;
-		std::cout << "double : " << input << std::endl;
-		return ;
-	}
+	std::cout << "char : " << input << std::endl;
+	std::cout << "int : " << input << std::endl;
+	std::cout << "float : " << input  << std::endl;
+	std::cout << "double : " << input << std::endl;
 }
 
 int	isChar( std::string input, long double num )
@@ -51,7 +47,7 @@ int	isChar( std::string input, long double num )
 	if (input[0] >= 0 && input[0] <= 32 && input[0] == 127)
 		std::cout << "char : Non displayable" << std::endl;
 	else
-		std::cout << "char : '" << static_cast<char>(num) << "'" << std::endl;
+		std::cout << "char : '" << input[0] << "'" << std::endl;
 	std::cout << std::fixed << std::setprecision(0);
 	std::cout << "int : " << static_cast<int>(num) << std::endl;
 	std::cout << std::fixed << std::setprecision(1);
@@ -60,9 +56,8 @@ int	isChar( std::string input, long double num )
 	return (0);
 }
 
-int	isInt( long double num )
+int	isInt( int num )
 {
-	std::cout << "is in int" << std::endl;
 	if (num > 31 && num < 127)
 		std::cout << "char : " << "'" << static_cast<char>(num) << "'" << std::endl;
 	else
@@ -77,7 +72,6 @@ int	isInt( long double num )
 
 int	isFloat( long double num, int precision )
 {
-	std::cout << "is in float" << std::endl;
 	std::cout << "char : Non displayable" << std::endl;
 	std::cout << std::fixed << std::setprecision(0);
 	std::cout << "int : " << static_cast<int>(num) << std::endl;
@@ -90,7 +84,6 @@ int	isFloat( long double num, int precision )
 
 int	isDouble( long double num, int precision )
 {
-	std::cout << "is in double" << std::endl;
 	std::cout << "char : Non displayable" << std::endl;
 	std::cout << std::fixed << std::setprecision(0);
 	std::cout << "int : " << static_cast<int>(num) << std::endl; 
@@ -119,6 +112,7 @@ int	checkIfInt( std::string input )
 			pointFlag += 1;
 		else if (!isdigit(input[i]))
 			return (0);
+		i++;
 	}
 
 	std::cout << std::fixed;
@@ -144,7 +138,7 @@ int	parseInput( std::string input )
 	else if (input == "inf" || input == "-inf" || input == "+inf" || input == "nan")
 		return (ISDOUBLE);
 
-	else if (input.length() == 1 && (input[0] > 0 && input[0] <= 127))
+	else if (input.length() == 1 && (static_cast<int>(input[0]) > 0 && static_cast<int>(input[0]) <= 126))
 		return (ISCHAR);
 
 	if (input[0] == '-' || input[0] == '+')
@@ -175,14 +169,34 @@ void	dispatchInput( std::string input, int returnedValue )
 	int		precision = 0;
 
 	precision = getPrecision(input);
+	std::cout << std::fixed;
+	newValue = atof(input.c_str());
 
-	switch (whatValue)
+	switch (returnedValue)
 	{
-		case (ISCHAR)
-		(isChar(input, num);
+		case (ISCHAR):
+		isChar(input, newValue);
 		break ;
-	}
-	
+
+		case (ISINT):
+		{
+			int num = atoi(input.c_str());
+			isInt(num);
+			break ;
+		}
+
+		case (ISFLOAT):
+		isFloat(newValue, precision);
+		break ;
+
+		case (ISDOUBLE):
+		isDouble(newValue, precision);
+		break ;
+
+		default:
+		nonDisplayable("Non displayable");
+		break ;
+	}	
 }
 
 int	parseScalar( std::string input )
@@ -191,7 +205,6 @@ int	parseScalar( std::string input )
 
 	returnValue = parseInput( input );
 	dispatchInput( input, returnValue );
-
 
 	return (0);
 }
