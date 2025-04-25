@@ -4,9 +4,10 @@
 #ifndef DATA_HPP
 #define DATA_HPP
 
-#include "Serializer.hpp"
+#include <iostream>
+#include <string>
 
-class	Data : public Serializer
+class	Data
 {
 	private:	
 		
@@ -16,6 +17,7 @@ class	Data : public Serializer
 	public:
 
 		Data();
+		Data( int age, std::string name );
 		Data( const Data& copy );
 		Data& operator=( const Data& copy );
 		~Data();

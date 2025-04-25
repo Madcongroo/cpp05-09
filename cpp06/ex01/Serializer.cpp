@@ -34,14 +34,27 @@ Serializer::~Serializer()
 	std::cout << "in serializer destructor" << std::endl;
 }
 
-static uintptr_t serialize(Data* ptr)
+uintptr_t Serializer::serialize(Data* ptr)
 {
-	
+	std::cout << "in serialize function" << std::endl;
+
+	if (ptr)
+		return (reinterpret_cast<uintptr_t>(ptr));
+
+	return (0);
 }
 
-static Data* deserialize(uintptr_t raw)
+Data* Serializer::deserialize(uintptr_t raw)
 {
+	std::cout << "in deserialize function" << std::endl;
 	
+	if (raw)
+	{
+		std::cout << "in raw not empty if condition" << std::endl;	
+		return (reinterpret_cast<Data*>(raw));
+	}
+
+	return (NULL);
 }
 
 

@@ -6,13 +6,16 @@
 
 int main()
 {
-	try{
+	
+	Data		test(45, "Heinz");
+	uintptr_t	ptr;
+	Data*		test2;
 
-	}
+	ptr = Serializer::serialize(&test);	
+	std::cout << ptr << std::endl;
+	test2 = Serializer::deserialize(ptr);	
+	std::cout << test2->getAge() << std::endl;
+	std::cout << test2->getName() << std::endl;
 
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
 	return (0);
 }

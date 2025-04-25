@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <string>
-#include <limits>
-#include <cstdint>
+#include <stdint.h>
+#include <exception>
 #include "Data.hpp"
 
 class	Serializer

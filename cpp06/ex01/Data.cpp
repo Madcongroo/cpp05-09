@@ -8,9 +8,14 @@
 #include "Data.hpp"
 
 
-Data::Data() : name_("bonjour"), age_(25)
+Data::Data()
 {
 	std::cout << "in data base constructor" << std::endl;
+}
+
+Data::Data( int age, std::string name ) : age_(age), name_(name)
+{
+	std::cout << "in direct assignation data class" << std::endl;
 }
 
 Data::Data( const Data& copy )
