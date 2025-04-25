@@ -21,43 +21,92 @@ Base* generate( void )
 	switch (seed % 3)
 	{
 		case 0:
-		return (dynamic_cast<A*>(newBase));
+		newBase = new A;
+		return (newBase);
 
 		case 1:
-		//newBase = new B;
-		return (dynamic_cast<B*>(newBase));
+		newBase = new B;
+		return (newBase);
 
 		case 2:
-		//newBase = new C;
-		return (dynamic_cast<C*>(newBase));
+		newBase = new C;
+		return (newBase);
 	}
 	return (NULL);
 }
 
 void	identify( Base* p )
 {
-	(void)p;
+	if (dynamic_cast<A*>(p) == NULL)
+		std::cout << "Class is not type A" << std::endl;
+	else
+	{
+		std::cout << "Class is of type A" << std::endl;
+		delete p;
+		return ;
+	}
+	if (dynamic_cast<B*>(p) == NULL)
+		std::cout << "Class is not type B" << std::endl;
+	else
+	{
+		std::cout << "Class is of type B" << std::endl;
+		delete p;
+		return ;
+	}
+	if (dynamic_cast<C*>(p) == NULL)
+		std::cout << "Class is not type C" << std::endl;
+	else
+	{
+		std::cout << "Class is of type C" << std::endl;
+		delete p;
+		return ;
+	}
 }
 
 void	identify( Base& p )
 {
-	(void)p;
+	{
+		try{
+			A test = dynamic_cast<A&>(p);
+			std::cout << "Class is of type A in identify function of reference" << std::endl;
+		}	
+		catch (std::exception& e)
+		{
+		}
+	}
+	{
+		try{
+			B test = dynamic_cast<B&>(p);
+			std::cout << "Class is of type B in identify function of reference" << std::endl;
+		}	
+		catch (std::exception& e)
+		{
+		}
+	}
+	{
+		try{
+			C test = dynamic_cast<C&>(p);
+			std::cout << "Class is of type C in identify function of reference" << std::endl;
+		}	
+		catch (std::exception& e)
+		{
+		}
+	}
 }
 
 int main()
 {
-	try
 	{
 		Base* test;
 
 		test = generate();
-		if (test == NULL)
-			std::cout << "type cast failed" << std::endl;
 		identify( test );
 	}
-	catch (std::exception& e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+
+	Base* test2;
+	
+	test2 = generate();
+	identify(*test2);	
+
 	return (0);	
 }
