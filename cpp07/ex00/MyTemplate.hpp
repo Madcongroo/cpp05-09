@@ -10,12 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#ifndef MYTEMPLATE_HPP
+#define MYTEMPLATE_HPP
 
-template <typename myType>
+#include <iostream>
+#include <string>
 
-myType S swap(myType a, myType b);
-myType 
+template <typename T>
+
+void swap(T& a, T& b)
+{
+	long double	temp = b;
+
+	b = a;
+	a = temp;
+}
+
+T min(T a, T b)
+{
+	if (a < b)
+		return (a);
+
+	return (b);
+}
+
+T max(T a, T b)
+{
+	if (a > b)
+		return (a);
+	
+	return (b);
+}
+
+
 
 #endif

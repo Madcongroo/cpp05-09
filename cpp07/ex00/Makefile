@@ -17,7 +17,7 @@ NAME		=	base
 CC		=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp
-INCLUDES	=	main.hpp
+INCLUDES	=	MyTemplate.hpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
