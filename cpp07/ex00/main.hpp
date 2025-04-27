@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   C.hpp                                              :+:      :+:    :+:   */
+/*   main.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 01:20:46 by proton            #+#    #+#             */
-/*   Updated: 2025/04/26 01:20:49 by proton           ###   ########.fr       */
+/*   Created: 2025/04/26 01:18:12 by proton            #+#    #+#             */
+/*   Updated: 2025/04/27 15:57:47 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C_HPP
-#define C_HPP
+#ifndef MAIN_HPP
+#define MAIN_HPP
 
-#include "Base.hpp"
+template <typename myType>
 
-class C : public Base {};
-
+myType S swap(myType a, myType b);
+myType 
 
 #endif

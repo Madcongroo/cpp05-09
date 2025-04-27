@@ -5,19 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/26 01:21:37 by proton            #+#    #+#              #
-#    Updated: 2025/04/26 01:21:39 by proton           ###   ########.fr        #
+#    Created: 2025/04/26 01:17:07 by proton            #+#    #+#              #
+#    Updated: 2025/04/26 01:17:15 by proton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .POSIX:
 .SUFFIXES:
 
-NAME		=	serialize
+NAME		=	base
 CC		=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-SRC		=	Data.cpp main.cpp Serializer.cpp
-INCLUDES	=	Data.hpp Serializer.hpp
+SRC		=	main.cpp
+INCLUDES	=	main.hpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
@@ -37,4 +37,4 @@ fclean: clean
 
 re: all
 
-.PHONY: all re% 
+.PHONY: all re
