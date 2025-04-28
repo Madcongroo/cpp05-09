@@ -17,16 +17,16 @@
 #include <string>
 
 template <typename T>
-
 void swap(T& a, T& b)
 {
-	long double	temp = b;
+	T temp = b;
 
 	b = a;
 	a = temp;
 }
 
-T min(T a, T b)
+template <typename T2>
+T2 min(T2 a, T2 b)
 {
 	if (a < b)
 		return (a);
@@ -34,14 +34,13 @@ T min(T a, T b)
 	return (b);
 }
 
-T max(T a, T b)
+template <typename T3>
+T3 max(T3 a, T3 b)
 {
 	if (a > b)
 		return (a);
 	
 	return (b);
 }
-
-
 
 #endif
