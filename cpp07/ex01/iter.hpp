@@ -22,15 +22,24 @@ void	f(T& value)
 	static size_t i = 0;
 
 	if (i % 2 == 0)
-		value += 32;
+	{
+		std::cout << "<<<<<<<<<< BEFORE CHANGE >>>>>>>>>>>>" << std::endl;
+		std::cout << value << std::endl;
+
+		value += i;
+
+		std::cout << "<<<<<<<<<< AFTER CHANGE >>>>>>>>>>>>" << std::endl;
+		std::cout << value << std::endl;
+		i += 1;
+	}
 	else
-		value -= 32;
+		value = value;
 }
 
-template <typename T, typename T2, typename T3>
-void	iter(T* array, T2 size, void f(T& value))
+template <typename T, typename T2>
+void	iter(T* array, T2 size, void (*f)(T&))
 {
-	T i = 0;
+	T2 i = 0;
 
 	if (size <= 0)
 		return ;
