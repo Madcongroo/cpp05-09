@@ -17,6 +17,6 @@ int main()
 	size_t len = 15;
 	std::string array[len];
 
-	::iter(array, len));	
-	
+	::iter(array, len, ::f(array[0]));	
+	return (0);
 }

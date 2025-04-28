@@ -17,7 +17,18 @@
 #include <string>
 
 template <typename T>
-void	iter(T* array, T size, T f(T& value))
+void	f(T& value)
+{
+	static size_t i = 0;
+
+	if (i % 2 == 0)
+		value += 32;
+	else
+		value -= 32;
+}
+
+template <typename T, typename T2, typename T3>
+void	iter(T* array, T2 size, void f(T& value))
 {
 	T i = 0;
 
@@ -26,13 +37,11 @@ void	iter(T* array, T size, T f(T& value))
 	
 	while (i < size)
 	{
+		f(array[i]);
+		i++;
 	}
 }
 
-template <typename T2>
-void	f(T2 value)
-{
-	
-}
+
 
 #endif
