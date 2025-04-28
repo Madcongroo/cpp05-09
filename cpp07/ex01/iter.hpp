@@ -19,21 +19,7 @@
 template <typename T>
 void	f(T& value)
 {
-	static size_t i = 0;
-
-	if (i % 2 == 0)
-	{
-		std::cout << "<<<<<<<<<< BEFORE CHANGE >>>>>>>>>>>>" << std::endl;
-		std::cout << value << std::endl;
-
-		value += i;
-
-		std::cout << "<<<<<<<<<< AFTER CHANGE >>>>>>>>>>>>" << std::endl;
-		std::cout << value << std::endl;
-		i += 1;
-	}
-	else
-		value = value;
+	value += 1;
 }
 
 template <typename T, typename T2>

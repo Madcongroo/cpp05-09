@@ -12,26 +12,16 @@
 
 #include "iter.hpp"
 
-//void	displayArray( std::string& array, size_t len )
-//{
-//	for (size_t i = 0, 
-//}
-
 int main()
 {
 	size_t		len = 3;
-	int		array[3] = {1, 2, 3};
-
-	//for (size_t i = 0; i < len; i++)
-	//{
-	//	for (size_t j = 0; j < 5; j++)
-	//	{
-	//		array[i][j] = j + i + 3;
-	//		std::cout << array[i][j] << std::endl;
-	//	}
-	//}
-
+	std::string	array[3] = {"salut", "bonjour", "test"};
 	::iter(array, len, &::f);
+
+	for (size_t i = 0; i < len; i++)
+		std::cout << array[i] << std::endl;
+
+	::f(len);
 
 	return (0);
 }
