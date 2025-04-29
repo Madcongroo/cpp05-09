@@ -34,7 +34,50 @@ class Array
 		~Array();
 
 		//T size();
-		std::string getArray( T pos );
+		T getArray( T pos );
+
+		class OutOfBoundException : public std::exception
+		{
+			const char* what() const throw();	
+		};
 };
+
+template <class T>
+Array<T>::Array() : size_(0), array_( new T[NULL] ) 
+{
+	std::cout << "in Array template base class constructor" << std::endl;
+}
+
+template <class T>
+Array<T>::Array( unsigned int n ) : array_( new T[n] ), size_(n) 
+{
+	std::cout << "in direct assignation of class template Array" << std::endl;
+}
+
+//template <class T>
+//Array<T>::Array( const Array& copy )
+//{
+//	*this = new 
+//}
+
+template <class T>
+Array<T>::~Array()
+{
+	delete this->array_;
+}
+
+template <class T>
+T Array<T>::getArray( T pos )
+{
+	if (pos >= this->size_)
+		throw (std::exception());
+	return (this->array_[pos]);
+}
+
+template <class T>
+Array<T>::OutOfBoundException::what() const throw ()
+{
+	
+}
 
 #endif

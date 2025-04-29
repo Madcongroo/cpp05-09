@@ -14,11 +14,12 @@
 
 int main()
 {
-	int * a = new int();
+	int * a = new int(5);
+	//unsigned int uint = 5;
 	Array<int> test(5);
 	
 	try {
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 6; i++)
 			std::cout << test.getArray(i) << std::endl;
 	}
 	catch (std::exception& e)
