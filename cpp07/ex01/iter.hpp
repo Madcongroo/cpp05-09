@@ -19,7 +19,7 @@
 template <typename T>
 void	f(T& value)
 {
-	value += 1;
+	std::cout << value << std::endl;
 }
 
 template <typename T, typename T2>

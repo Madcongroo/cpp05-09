@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 22:44:44 by proton            #+#    #+#             */
-/*   Updated: 2025/04/29 01:00:44 by proton           ###   ########.fr       */
+/*   Updated: 2025/04/29 15:21:42 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,19 @@ class Array
 {
 	private:
 
-		T* array_;
+		T*	array_;
+		T	size_;
 
 	public:
 
 		Array();
 		Array( unsigned int n );
-		Array( const Array& copy );
-		Array& operator=( const Array& copy );
+		//Array( const Array& copy );
+		//Array& operator=( const Array& copy );
+		~Array();
 
-		T size();
+		//T size();
+		std::string getArray( T pos );
 };
 
 #endif
