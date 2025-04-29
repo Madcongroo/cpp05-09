@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   Array.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 22:44:44 by proton            #+#    #+#             */
-/*   Updated: 2025/04/29 01:00:44 by proton           ###   ########.fr       */
+/*   Created: 2025/04/29 00:59:30 by proton            #+#    #+#             */
+/*   Updated: 2025/04/29 01:00:43 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
-
-#include <iostream>
-#include <string>
-#include <exception>
+#include "Array.hpp"`
 
 template <class T>
-class Array
+Array<T>::Array() : array_( new[] T ) 
 {
-	private:
+	std::cout << "in Array template base class constructor" << std::endl;
+}
 
-		T* array_;
+template <class T>
+Array<T>::Array( unsigned int n ) : array_( new[n] T )
+{
+	std::cout << "in direct assignation of class template Array" << std::endl;
+}
 
-	public:
+template <class T>
+Array<T>::Array( const Array& copy )
+{
 
-		Array();
-		Array( unsigned int n );
-		Array( const Array& copy );
-		Array& operator=( const Array& copy );
-
-		T size();
-};
-
-#endif
+}
