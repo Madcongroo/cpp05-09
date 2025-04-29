@@ -38,7 +38,7 @@ class Array
 
 		class OutOfBoundException : public std::exception
 		{
-			const char* what() const throw();	
+			virtual const char* what() const throw();	
 		};
 };
 
@@ -54,11 +54,11 @@ Array<T>::Array( unsigned int n ) : array_( new T[n] ), size_(n)
 	std::cout << "in direct assignation of class template Array" << std::endl;
 }
 
-//template <class T>
-//Array<T>::Array( const Array& copy )
-//{
-//	*this = new 
-//}
+template <class T>
+Array<T>::Array( const Array& copy )
+{
+	*this = new 
+}
 
 template <class T>
 Array<T>::~Array()
@@ -75,9 +75,9 @@ T Array<T>::getArray( T pos )
 }
 
 template <class T>
-Array<T>::OutOfBoundException::what() const throw ()
+Array<T>::OutOfBoundException::what() const throw()
 {
-	
+	return ("Out of bound");
 }
 
 #endif

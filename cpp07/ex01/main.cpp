@@ -15,7 +15,7 @@
 int main()
 {
 	size_t		len = 3;
-	std::string	array[3] = {"salut", "bonjour", "test"};
+	int		array[3] = {1, 2, 3};
 	::iter(array, len, &::f);
 
 	for (size_t i = 0; i < len; i++)

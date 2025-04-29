@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 //#include "Array.hpp"
-
+//
 //template <class T>
 //Array<T>::Array() : size_(0), array_( new T[NULL] ) 
 //{
@@ -40,6 +40,9 @@
 //std::string Array<T>::getArray( T pos )
 //{
 //	if (pos >= this->size_)
-//		throw ("Pos is out of bound");
+//		throw (OutOfBoundException);
 //	return (this->array_[pos]);
 //};
+
+
+
