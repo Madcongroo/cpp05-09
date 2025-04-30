@@ -15,7 +15,6 @@
 int main()
 {
 	int * a = new int(5);
-	//unsigned int uint = 5;
 	Array<int> test(5);
 	
 	try {
