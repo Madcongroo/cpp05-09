@@ -23,7 +23,7 @@ class Array
 	private:
 
 		T*	array_;
-		T	size_;
+		size_t	size_;
 
 	public:
 
@@ -34,7 +34,7 @@ class Array
 		~Array();
 
 		T	size() const;
-		T	getArray( T pos ) const;
+		T&	operator[]( int pos );
 		void	modifyArray( T pos, T newValue );
 
 		class OutOfBoundException : public std::exception

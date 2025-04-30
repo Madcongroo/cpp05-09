@@ -15,7 +15,7 @@ Array<T>::Array()
 {
 	std::cout << "in Array template base class constructor" << std::endl;
 	size_ = 0;
-	array_ = NULL;
+	array_ = new T[0];
 }
 
 template <class T>
@@ -40,14 +40,17 @@ template <class T>
 Array<T>& Array<T>::operator=( const Array& copy )
 {
 	std::cout << "in copy operator of class array" << std::endl;
+
 	if (this == &copy)
 		return (*this);
 
 	delete[] this->array_;
 	this->array_ = new T[copy.size_];
 	this->size_ = copy.size_;
-	for (T i = 0; i < copy.size_; i++)
+
+	for (size_t i = 0; i < copy.size_; i++)
 		this->array_[i] = copy.array_[i];
+
 	return (*this);
 }
 
@@ -73,9 +76,9 @@ void Array<T>::modifyArray( T pos, T newValue )
 }
 
 template <class T>
-T Array<T>::getArray( T pos ) const
+T& Array<T>::operator[]( int pos )
 {
-	if (pos >= this->size_ || pos < 0)
+	if ((size_t)pos >= this->size_ || pos < 0)
 		throw (OutOfBoundException());
 
 	return (this->array_[pos]);

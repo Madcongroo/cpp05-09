@@ -14,23 +14,31 @@
 
 int main()
 {
-	//int * a = new int(5);
-	Array<std::string> test(5);
-	Array<std::string> test2;
-	test2 = test;
 	
 	try {
-		//for (int i = 0; i < 5; i++)
-		//	std::cout << test.getArray(i) << std::endl;
-		//test.modifyArray(0, 5);
-		std::cout << test2.getArray(0) << std::endl;
-		//std::cout << test.getArray(0) << std::endl;
+		Array<std::string> test(5);
+		Array<std::string> test2;
+		Array<int> test3(6);
+		std::cout << "PUTTING VALUES IN TEST" << std::endl;
+		test[0] = "QWERT";
+		test[1] = "ASDF";
+		test[2] = "hut";
+		test[3] = "klkj";
+		test[4] = "mbjb";
+		std::cout << test[2] << std::endl;
+		std::cout << "ASSIGNING TEST TO TEST2" << std::endl;
+		test2 = test;
+		std::cout << "MODIFIYING TEST2[0]" << std::endl;
+		test2[0] = "NEW";
+		test3[0] = 99;
+		std::cout << test2[2] << std::endl;
+		std::cout << test2[0] << std::endl;
+		std::cout << test3[0] << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	//std::cout << *a << std::endl;
-	//delete a;
+
 	return (0);
 }
