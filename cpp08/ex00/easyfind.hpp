@@ -16,6 +16,13 @@
 #include <iostream>
 #include <string>
 
-
+template<typename T>
+T	easyfind( T num1, int num2)
+{
+	for (std::size_type i = 0; i < num1.size(); i++)
+	{
+		if (num1.
+	}
+}
 
 #endif
