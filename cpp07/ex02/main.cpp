@@ -14,18 +14,23 @@
 
 int main()
 {
-	int * a = new int(5);
-	Array<int> test(5);
+	//int * a = new int(5);
+	Array<std::string> test(5);
+	Array<std::string> test2;
+	test2 = test;
 	
 	try {
-		for (int i = 0; i < 6; i++)
-			std::cout << test.getArray(i) << std::endl;
+		//for (int i = 0; i < 5; i++)
+		//	std::cout << test.getArray(i) << std::endl;
+		//test.modifyArray(0, 5);
+		std::cout << test2.getArray(0) << std::endl;
+		//std::cout << test.getArray(0) << std::endl;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	std::cout << *a << std::endl;
-	delete a;
+	//std::cout << *a << std::endl;
+	//delete a;
 	return (0);
 }

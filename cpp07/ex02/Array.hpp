@@ -33,8 +33,9 @@ class Array
 		Array& operator=( const Array& copy );
 		~Array();
 
-		T size();
-		T getArray( T pos );
+		T	size() const;
+		T	getArray( T pos ) const;
+		void	modifyArray( T pos, T newValue );
 
 		class OutOfBoundException : public std::exception
 		{
@@ -42,58 +43,6 @@ class Array
 		};
 };
 
-template <class T>
-Array<T>::Array() : size_(0), array_( new T[NULL] ) 
-{
-	std::cout << "in Array template base class constructor" << std::endl;
-}
-
-template <class T>
-Array<T>::Array( unsigned int n ) : array_( new T[n] ), size_(n) 
-{
-	std::cout << "in direct assignation of class template Array" << std::endl;
-}
-
-template <class T>
-Array<T>::Array( const Array& copy )
-{
-	std::cout << "in copy constructor of array class" << std::endl;
-	*this = copy;
-}
-
-template <class T>
-Array<T>& Array<T>::operator=( const Array& copy )
-{
-	std::cout << "in copy operator of class array" << std::endl;
-	if (this == &copy)
-		return (*this);
-
-	delete[] this->array_;
-	this->array_ = new T[copy.size_];
-	this->size_ = copy.size_;
-	for (size_t i = 0; i < copy.size_; i++)
-		this->array_[i] = copy.array_[i];
-	return (*this);
-}
-
-template <class T>
-Array<T>::~Array()
-{
-	delete this->array_;
-}
-
-template <class T>
-T Array<T>::getArray( T pos )
-{
-	if (pos >= this->size_ || pos < 0)
-		throw (OutOfBoundException());
-	return (this->array_[pos]);
-}
-
-template <class T>
-const char* Array<T>::OutOfBoundException::what() const throw()
-{
-	return ("Out of bound");
-}
+#include "Array.tpp"
 
 #endif
