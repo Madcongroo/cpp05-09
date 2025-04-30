@@ -5,19 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/30 17:28:49 by proton            #+#    #+#              #
-#    Updated: 2025/04/30 17:29:01 by proton           ###   ########.fr        #
+#    Created: 2025/04/30 17:29:16 by proton            #+#    #+#              #
+#    Updated: 2025/04/30 17:29:32 by proton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .POSIX:
 .SUFFIXES:
 
-NAME		=	array
+NAME		=	easyfind
 CC		=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
 SRC		=	main.cpp
-INCLUDES	=	Array.hpp
+INCLUDES	=	easyfind.hpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
