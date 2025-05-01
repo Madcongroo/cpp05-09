@@ -14,5 +14,12 @@
 
 int main()
 {
-
-}
+	try {
+	std::list<int> test = {1, 2, 3, 4, 5, 6, 7};
+	::easyfind(test, 5);
+	}
+	catch (std::exception& e){
+		std::cout << e.what() << std::endl;
+	}
+	return (0);
+}                                   //
