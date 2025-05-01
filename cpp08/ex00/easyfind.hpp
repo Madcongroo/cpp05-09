@@ -19,17 +19,25 @@
 #include <list>
 #include <exception>
 
-template<typename T>
-T	easyfind( T num1, int num2)
+class NoOccurenceFoundException : public std::exception
 {
-	//for (std::size_t i = 0; i < num1.size(); i++)
-	//{
-	//	if (num1.front() == num2)
-	//		return ("value found");
-	//}
-	if (std::find(num1.begin(), num1.end(), num2) == num1.end())
-		throw(std::exception());
-	return (0);
+	virtual const char* what() const throw()
+	{
+		return ("No occurence has been found");
+	}
+};
+
+template<typename T>
+int	easyfind( T num1, int num2)
+{
+	for (std::list<int>::iterator it = num1.begin(); it != num1.end(); it++)
+	{
+		if (*it == num2)
+			return (*it);
+	}
+	throw(NoOccurenceFoundException());
 }
+
+
 
 #endif
