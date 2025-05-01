@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:27:20 by proton            #+#    #+#             */
-/*   Updated: 2025/05/01 16:10:05 by proton           ###   ########.fr       */
+/*   Updated: 2025/05/01 20:27:53 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class	Span
 {
 	private:
 		
-		unsigned int maxNumbers;
+		unsigned int maxNumbers_;
 		
 
 	public:
