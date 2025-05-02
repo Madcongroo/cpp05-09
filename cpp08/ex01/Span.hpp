@@ -34,9 +34,12 @@ class	Span
 		Span& operator=( const Span& copy );
 
 		void		addNumber( unsigned int n );
+		void		addMultipleNumbers( std::multiset<unsigned int>::iterator first, std::multiset<unsigned int>::iterator last );
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
-		
+
+		//template<typename T>
+		//void	addMultipleNumbers( T a, T b );
 
 	class SpanException : std::exception
 	{
@@ -50,5 +53,11 @@ class	Span
 			virtual const char* what() const throw();
 	};
 };
+
+//template<typename T>
+//void	addMultipleNumbers( T a, T b )
+//{
+//	
+//}
 
 #endif

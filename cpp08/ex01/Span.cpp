@@ -42,10 +42,6 @@ void	Span::addNumber( unsigned int n )
 			throw (SpanException("List already full"));
 
 	this->mult_.insert(n);
-	//std::cout << "BEFORE INSERTIONS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" << std::endl;
-	//for (std::multiset<unsigned int>::iterator it = mult_.begin(); it != mult_.end(); it++)
-	//	std::cout << *it << std::endl;
-	//std::cout << "<<<<<<<<<<<<<<<<<<<<<<< AFTER INSERTION" << std::endl;
 }
 
 unsigned int	Span::shortestSpan()
@@ -53,13 +49,14 @@ unsigned int	Span::shortestSpan()
 	unsigned int	shortSpan = -1;
 	unsigned int	savedSpan = UINT_MAX;
 	std::multiset<unsigned int>::iterator itFirst = this->mult_.begin();
-	std::multiset<unsigned int>::iterator itSecond = this->mult_.begin()++;
-	std::multiset<unsigned int>::reverse_iterator itEnd = this->mult_.rbegin();
+	std::multiset<unsigned int>::iterator itSecond = this->mult_.begin();
+	std::multiset<unsigned int>::iterator itEnd = this->mult_.end();
+	itSecond++;
 
 	if (this->mult_.size() <= 1)
 		throw (SpanException("Not enough composants on the list"));	
 	
-	while (itSecond != *itEnd)
+	while (itSecond != itEnd)
 	{
 		shortSpan = *itSecond - *itFirst;
 
@@ -72,7 +69,6 @@ unsigned int	Span::shortestSpan()
 		itFirst++;
 	}
 	return (savedSpan);
-
 }
 
 unsigned int	Span::longestSpan()
@@ -86,7 +82,10 @@ unsigned int	Span::longestSpan()
 	return (*itEnd - *itStart);
 }
 
-
+void	Span::addMultipleNumbers( std::multiset<unsigned int>::iterator first, std::multiset<unsigned int>::iterator last )
+{
+	
+}
 
 Span::SpanException::SpanException()
 {
