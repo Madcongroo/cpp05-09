@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:27:20 by proton            #+#    #+#             */
-/*   Updated: 2025/05/01 20:27:53 by proton           ###   ########.fr       */
+/*   Updated: 2025/05/02 01:05:08 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <set>
+#include <limits.h>
 
 class	Span
 {
 	private:
 		
-		unsigned int maxNumbers_;
-		
+		unsigned int			maxNumbers_;
+		std::multiset<unsigned int>	mult_;
 
 	public:
 		
@@ -31,7 +33,7 @@ class	Span
 		Span( const Span& copy );
 		Span& operator=( const Span& copy );
 
-		void		addNumber();
+		void		addNumber( unsigned int n );
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 		
@@ -39,11 +41,11 @@ class	Span
 	class SpanException : std::exception
 	{
 		private:
-			std::string message;
+			std::string message_;
 		public:
 			SpanException();
 			SpanException( std::string message );
-			~SpanException();
+			~SpanException() throw();
 
 			virtual const char* what() const throw();
 	};

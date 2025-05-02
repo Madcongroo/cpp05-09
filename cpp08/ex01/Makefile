@@ -13,11 +13,11 @@
 .POSIX:
 .SUFFIXES:
 
-NAME		=	easyfind
+NAME		=	shortspan
 CC		=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-SRC		=	main.cpp
-INCLUDES	=	easyfind.hpp
+SRC		=	main.cpp Span.cpp
+INCLUDES	=	Span.hpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
