@@ -18,14 +18,18 @@ int main()
 		Span sp = Span(15000);
 		std::set<unsigned int> number;
 		std::srand(std::time(NULL));
-
+		
 		for (size_t i = 0; i < 15000; i++)
-		{
 			number.insert(std::rand());
-		}
+	
 		sp.addMultipleNumbers(number.begin(), number.end());
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
+
+		for (size_t i = 0; i < 16000; i++)
+			number.insert(std::rand());
+
+		sp.addMultipleNumbers(number.begin(), number.end());	
 	}
 	catch (Span::SpanException& e)
 	{

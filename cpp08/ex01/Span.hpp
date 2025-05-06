@@ -36,12 +36,12 @@ class	Span
 		Span& operator=( const Span& copy );
 
 		void		addNumber( unsigned int n );
-		void		addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last );
+
+		template<typename T>
+		void		addMultipleNumbers(T first, T last );
+
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
-
-		//template<typename T>
-		//void	addMultipleNumbers( T a, T b );
 
 	class SpanException : std::exception
 	{
@@ -56,10 +56,13 @@ class	Span
 	};
 };
 
-//template<typename T>
-//void	addMultipleNumbers( T a, T b )
-//{
-//	
-//}
+template<typename T>
+void	Span::addMultipleNumbers( T first, T last )
+{
+	if (*last > this->maxNumbers_)
+		throw (SpanException("Range too high"));
+
+	this->container_.insert(first, last);
+}
 
 #endif
