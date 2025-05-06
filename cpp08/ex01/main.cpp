@@ -15,10 +15,15 @@
 int main()
 {
 	try {
-		Span sp = Span(500);
-		sp.addNumber(1);
-		sp.addNumber(500);
-		sp.addMultipleNumbers(sp.getItFirst(), sp.getItLast());
+		Span sp = Span(15000);
+		std::set<unsigned int> number;
+		std::srand(std::time(NULL));
+
+		for (size_t i = 0; i < 15000; i++)
+		{
+			number.insert(std::rand());
+		}
+		sp.addMultipleNumbers(number.begin(), number.end());
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 	}

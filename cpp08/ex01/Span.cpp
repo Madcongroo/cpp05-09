@@ -84,31 +84,12 @@ unsigned int	Span::longestSpan()
 
 void	Span::addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last )
 {
+	std::cout << *first << std::endl;
+	std::cout << *last << std::endl;
 	if (*first >= *last)
-	{
-		std::cerr << "couldnt add to list" << std::endl;
-		return ;
-	}
-
-	unsigned int uinFirst = *first;
-	unsigned int uinLast = *last;
-
-	while (uinFirst < uinLast)
-	{
-		this->container_.insert(uinFirst);
-		uinFirst++;
-	}
+		throw (SpanException("couldnt add numbers to list"));
+	this->container_.insert(first, last);
 	std::cout << this->container_.size() << std::endl;
-}
-
-std::set<unsigned int>::iterator Span::getItFirst()
-{
-	return (this->container_.begin());
-}
-
-std::set<unsigned int>::iterator Span::getItLast()
-{
-	return (this->container_.end());
 }
 
 Span::SpanException::SpanException()

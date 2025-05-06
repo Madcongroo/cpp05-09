@@ -18,6 +18,8 @@
 #include <exception>
 #include <set>
 #include <limits.h>
+#include <cstdlib>
+#include <ctime>
 
 class	Span
 {
@@ -35,8 +37,6 @@ class	Span
 
 		void		addNumber( unsigned int n );
 		void		addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last );
-		std::set<unsigned int>::iterator getItFirst();
-		std::set<unsigned int>::iterator getItLast();
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 
