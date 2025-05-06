@@ -24,7 +24,7 @@ class	Span
 	private:
 		
 		unsigned int			maxNumbers_;
-		std::multiset<unsigned int>	mult_;
+		std::set<unsigned int>		container_;
 
 	public:
 		
@@ -34,7 +34,9 @@ class	Span
 		Span& operator=( const Span& copy );
 
 		void		addNumber( unsigned int n );
-		void		addMultipleNumbers( std::multiset<unsigned int>::iterator first, std::multiset<unsigned int>::iterator last );
+		void		addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last );
+		std::set<unsigned int>::iterator getItFirst();
+		std::set<unsigned int>::iterator getItLast();
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
 

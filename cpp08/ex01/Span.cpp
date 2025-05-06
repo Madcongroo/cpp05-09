@@ -38,22 +38,22 @@ Span& Span::operator=( const Span& copy )
 
 void	Span::addNumber( unsigned int n )
 {
-	if (this->mult_.size() == this->maxNumbers_)
+	if (this->container_.size() == this->maxNumbers_)
 			throw (SpanException("List already full"));
 
-	this->mult_.insert(n);
+	this->container_.insert(n);
 }
 
 unsigned int	Span::shortestSpan()
 {
 	unsigned int	shortSpan = -1;
 	unsigned int	savedSpan = UINT_MAX;
-	std::multiset<unsigned int>::iterator itFirst = this->mult_.begin();
-	std::multiset<unsigned int>::iterator itSecond = this->mult_.begin();
-	std::multiset<unsigned int>::iterator itEnd = this->mult_.end();
+	std::set<unsigned int>::iterator itFirst = this->container_.begin();
+	std::set<unsigned int>::iterator itSecond = this->container_.begin();
+	std::set<unsigned int>::iterator itEnd = this->container_.end();
 	itSecond++;
 
-	if (this->mult_.size() <= 1)
+	if (this->container_.size() <= 1)
 		throw (SpanException("Not enough composants on the list"));	
 	
 	while (itSecond != itEnd)
@@ -73,18 +73,42 @@ unsigned int	Span::shortestSpan()
 
 unsigned int	Span::longestSpan()
 {
-	if (this->mult_.size() <= 1)
+	if (this->container_.size() <= 1)
 		throw (SpanException("Not enough composants on the list"));
 
-	std::multiset<unsigned int>::iterator itStart = this->mult_.begin();
-	std::multiset<unsigned int>::reverse_iterator itEnd = this->mult_.rbegin();
+	std::set<unsigned int>::iterator itStart = this->container_.begin();
+	std::set<unsigned int>::reverse_iterator itEnd = this->container_.rbegin();
 
 	return (*itEnd - *itStart);
 }
 
-void	Span::addMultipleNumbers( std::multiset<unsigned int>::iterator first, std::multiset<unsigned int>::iterator last )
+void	Span::addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last )
 {
-	
+	if (*first >= *last)
+	{
+		std::cerr << "couldnt add to list" << std::endl;
+		return ;
+	}
+
+	unsigned int uinFirst = *first;
+	unsigned int uinLast = *last;
+
+	while (uinFirst < uinLast)
+	{
+		this->container_.insert(uinFirst);
+		uinFirst++;
+	}
+	std::cout << this->container_.size() << std::endl;
+}
+
+std::set<unsigned int>::iterator Span::getItFirst()
+{
+	return (this->container_.begin());
+}
+
+std::set<unsigned int>::iterator Span::getItLast()
+{
+	return (this->container_.end());
 }
 
 Span::SpanException::SpanException()
