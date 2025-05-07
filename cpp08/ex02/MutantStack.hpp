@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:38:49 by proton            #+#    #+#             */
-/*   Updated: 2025/05/07 11:40:10 by proton           ###   ########.fr       */
+/*   Updated: 2025/05/07 15:38:40 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,19 @@
 #include <iostream>
 #include <string>
 #include <deque>
+#include <stack>
 
 template<typename T, class Container = std::deque<T>>
-class	MutantStack
+class	MutantStack : std::stack<T>
 {
-	private:
-
-		Container stack_;
-
 	public:
 
 	MutantStack();
 	MutantStack( const MutantStack& copy );
 	MutantStack& operator=( const MutantStack& copy );
 	~MutantStack();
-	
-	void	top();
-	void	empty();
-	void	size();
-	void	push();
-	void	pop();
+
+		
 };
 
 
