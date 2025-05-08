@@ -18,7 +18,7 @@
 #include <deque>
 #include <stack>
 
-template<typename T, class Container = std::deque<T>>
+template<typename T, class Container = std::deque<T> >
 class	MutantStack : public std::stack<T>
 {
 	public:
@@ -28,8 +28,12 @@ class	MutantStack : public std::stack<T>
 	MutantStack& operator=( const MutantStack& copy );
 	~MutantStack();
 
-	typedef MutantStack<T, Container> iterator;
+	typedef typename Container::iterator iterator;
+	iterator	begin() { return (this->c.begin()); }
+	iterator	end() { return (this->c.end()); }
 };
+
+#include "MutantStack.tpp"
 
 
 #endif

@@ -13,7 +13,7 @@
 #include "MutantStack.hpp"
 
 template<typename T, class Container>
-MutantStack<T, Container>::MutantStack()
+MutantStack<T, Container>::MutantStack() : std::stack<T, Container>::Stack()
 {
 	std::cout << "in base constructor" << std::endl;
 }

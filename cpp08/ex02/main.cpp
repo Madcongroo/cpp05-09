@@ -18,10 +18,10 @@ int main()
 
 	mstack.push(5);
 	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
+	std::cout << "stack top is " << mstack.top() << std::endl;
 
 	mstack.pop();
-	std::cout << mstack.size() << std::endl;
+	std::cout << "stack size after pop : " << mstack.size() << std::endl;
 
 	mstack.push(3);
 	mstack.push(5);
@@ -33,10 +33,17 @@ int main()
 	--it;
 	while (it != ite)
 	{
-	std::cout << *it << std::endl;
-	++it;
+		std::cout << *it << std::endl;
+		++it;
 	}
+
 	std::stack<int> s(mstack);
+	s.pop();
+	std::cout << s.top() << std::endl;
+	s.push(12);
+	s.push(234);
+	std::cout << "stack s size : " << s.size() << std::endl;
+	
 	return 0;
 
 }
