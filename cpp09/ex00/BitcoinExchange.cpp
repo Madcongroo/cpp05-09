@@ -53,7 +53,8 @@ Btc::Btc()
 				std::cerr << "Date is empty" << std::endl;
 				exit (1);
 			}
-			value = std::strtof(line.substr(delim, end));
+			value = std::strtof(line.substr(delim, end).c_str(), NULL);
+			_dataBase.insert(date, value);
 		}
 	}
 }
