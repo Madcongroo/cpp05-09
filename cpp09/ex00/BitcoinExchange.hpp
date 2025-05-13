@@ -15,6 +15,37 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <map>
+#include <exception>
+
+class Btc
+{
+	private:
+	
+		std::map<std::string, float> _dataBase;
+
+	public:
+
+		Btc();
+		Btc( const Btc& copy );
+		Btc& operator=( const Btc& copy );
+		~Btc();
+
+	//class	BtcException : public std::exception
+	//{
+	//	private:
+	//		std::string _message;
+	//	public:
+	//		BtcException() throw();
+	//		BtcException( std::string message ) throw ();
+	//		~BtcException() throw();
+
+	//		virtual const char* what() const throw();
+	//};
+
+		
+};
 
 
 

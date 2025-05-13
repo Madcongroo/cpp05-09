@@ -12,12 +12,25 @@
 
 #include "BitcoinExchange.hpp"
 
-int main( int ac, char **av )
+int	parseInputFile( std::ifstream& file )
+{
+
+}
+
+int	main( int ac, char **av )
 {
 	if (ac != 2)
 	{
 		std::cerr << "Error, wrong number of arguments" << std::endl;
 		return (1);
 	}
+
+	std::ifstream file(av[1]);
+	if (file.fail())
+	{
+		std::cerr << "Error, file failed to open" << std::endl;
+		return (1);
+	}
+	
 
 }
