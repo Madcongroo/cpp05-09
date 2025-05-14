@@ -19,6 +19,7 @@ Btc::Btc()
 	std::ifstream		dataBase("data.csv");
 	std::string		line;
 	std::string::size_type	delim = 0;
+	std::map<std::string, float>::iterator it = _dataBase.begin();
 
 	if (!dataBase.is_open())
 	{
@@ -33,11 +34,6 @@ Btc::Btc()
 		std::string::size_type	end = line.size();
 
 		date.erase();
-		if (std::getline(dataBase, line).eof())
-		{
-			std::cerr << "An error has occured in getline" << std::endl;
-			exit(1);
-		}
 
 		delim = line.find(',');
 		if (line[delim] != ',')
@@ -53,8 +49,9 @@ Btc::Btc()
 				std::cerr << "Date is empty" << std::endl;
 				exit (1);
 			}
-			value = std::strtof(line.substr(delim, end).c_str(), NULL);
-			_dataBase.insert(date, value);
+			value = std::strtod(line.substr(delim + 1, end).c_str(), NULL);
+			_dataBase.insert(it, std::pair<std::string, float>(date, value));
+			it++;
 		}
 	}
 }
@@ -71,8 +68,9 @@ Btc&	Btc::operator=( const Btc& copy )
 
 	if (this != &copy)
 	{
-			
+		return (*this);
 	}
+	return (*this);
 }
 
 Btc::~Btc()
@@ -80,5 +78,17 @@ Btc::~Btc()
 	std::cout << "destructor" << std::endl;
 }
 
+void	Btc::printValues( std::string value, enum isValid flag )
+{
+	if (flag == NONVALID)
+	{
+		std::cout << value << std::endl;
+		return ;
+	}
+
+	std::map<std::string, float>::iterator search;
+	search = this->_dataBase.find(value);
+	std::cout << search->second << std::endl;
+}
 
 

@@ -18,6 +18,15 @@
 #include <fstream>
 #include <map>
 #include <exception>
+#include <cstdlib>
+#include <utility>
+
+
+enum	isValid
+{
+	VALID,
+	NONVALID
+};
 
 class Btc
 {
@@ -31,6 +40,8 @@ class Btc
 		Btc( const Btc& copy );
 		Btc& operator=( const Btc& copy );
 		~Btc();
+
+		void	printValues( std::string value, enum isValid flag );
 
 	//class	BtcException : public std::exception
 	//{
