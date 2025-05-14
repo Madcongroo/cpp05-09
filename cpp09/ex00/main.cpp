@@ -12,9 +12,34 @@
 
 #include "BitcoinExchange.hpp"
 
-enum isValid	parseDate( std::string date )
-{
+//enum isValid	parseYearMonthDay( int date, size_t round, Btc& dataBase )
+//{
+//	if (round == 1)
+//	{
+//		if (date < 2009)
+//			dataBase.printValues("Bitcoin was not out at the moment", NONVALID);
+//		else if (
+//	}
+//}
 
+enum isValid	parseDate( std::string date, Btc& dataBase )
+{
+	if (date.empty())
+		return (NONVALID);
+
+	//size_t			i = 0;
+	//std::string::size_type	pos;
+	//size_t			round = 0;
+
+	//while (date[i])
+	//{
+	//	if (date[i] == '-')
+	//	{
+	//		round += 1;
+	//		if (parseYearMonthDay(std::atoi(date.substr(pos, i).c_str()), round, dataBase) == NONVALID)
+	//			return (NONVALID);
+	//	}
+	//}
 }
 
 void	parseUserInput(std::ifstream& file)
@@ -33,7 +58,7 @@ void	parseUserInput(std::ifstream& file)
 		else
 		{
 			date = line.substr(0, delim);
-			if (parseDate(date) == NONVALID)
+			if (parseDate(date, dataBase) == NONVALID)
 				continue ;
 		}
 
