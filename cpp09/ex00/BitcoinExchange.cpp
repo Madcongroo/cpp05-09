@@ -87,10 +87,20 @@ void	Btc::printValues( std::string value, enum isValid flag )
 	}
 
 	std::string	date = value.substr(0, value.find('|'));
-
+	float		BtcNumber = 0;	
 	std::map<std::string, float>::iterator search;
+	std::map<std::string, float>::iterator lowerBoundIt;
+
+	BtcNumber = std::atof(value.substr(value.find('|') + 1, value.length()).c_str());
 	search = this->_dataBase.find(date);
-	std::cout << search->second << std::endl;
+	if (search->first.empty())
+	{
+		lowerBoundIt = this->_dataBase.lower_bound(date);
+		std::cout << lowerBoundIt->first << " => " << lowerBoundIt->second << " = " << lowerBoundIt->second * BtcNumber << std::endl;
+		return ;
+	}
+	std::cout << lowerBoundIt->first << " => " << lowerBoundIt->second << " = " << lowerBoundIt->second * BtcNumber << std::endl;
+	return ;
 }
 
 

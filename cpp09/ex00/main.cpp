@@ -14,6 +14,9 @@
 
 enum isValid	parseYearMonthDay( int year, int month, int day, Btc& dataBase, std::string date )
 {
+	std::cout << "year = " << year << std::endl;
+	std::cout << "month = " << month << std::endl;
+	std::cout << "day = " << day << std::endl;
 	if (year == 0 || month == 0 || day == 0)
 	{
 		dataBase.printValues("Error, date is wrong => " + date, NONVALID);
@@ -57,8 +60,8 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 	if (date.empty())
 		return (NONVALID);
 	
-	std::string::size_type	pos;
-	std::string::size_type	delimiter;
+	std::string::size_type	pos = 0;
+	std::string::size_type	delimiter = 0;
 	int			year = 0;
 	int			month = 0;
 	int			day = 0;
@@ -66,11 +69,10 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 	delimiter = date.find('-');
 	year = std::atoi(date.substr(0, delimiter).c_str());
 	pos = delimiter + 1;
-	delimiter = date.find(pos, '-');
-	month = std::atoi(date.substr(pos, delimiter).c_str());
+	delimiter = date.find(delimiter, '-');
+	month = std::atoi(date.substr(pos, date.find('-')).c_str());
 	pos = delimiter + 1;
-	delimiter = date.find(pos, '|');
-	day = std::atoi(date.substr(pos, delimiter).c_str());
+	day = std::atoi(date.substr(pos, date.length()).c_str());
 
 	if (parseYearMonthDay(year, month, day, dataBase, date) == NONVALID)
 		return (NONVALID);
@@ -115,7 +117,6 @@ void	parseUserInput(std::ifstream& file)
 				continue ;
 			dataBase.printValues(line, VALID);
 		}
-
 	}
 }
 
