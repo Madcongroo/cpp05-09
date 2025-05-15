@@ -86,8 +86,10 @@ void	Btc::printValues( std::string value, enum isValid flag )
 		return ;
 	}
 
+	std::string	date = value.substr(0, value.find('|'));
+
 	std::map<std::string, float>::iterator search;
-	search = this->_dataBase.find(value);
+	search = this->_dataBase.find(date);
 	std::cout << search->second << std::endl;
 }
 

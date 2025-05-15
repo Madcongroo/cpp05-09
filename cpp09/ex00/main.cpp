@@ -12,34 +12,84 @@
 
 #include "BitcoinExchange.hpp"
 
-//enum isValid	parseYearMonthDay( int date, size_t round, Btc& dataBase )
-//{
-//	if (round == 1)
-//	{
-//		if (date < 2009)
-//			dataBase.printValues("Bitcoin was not out at the moment", NONVALID);
-//		else if (
-//	}
-//}
+enum isValid	parseYearMonthDay( int year, int month, int day, Btc& dataBase, std::string date )
+{
+	if (year == 0 || month == 0 || day == 0)
+	{
+		dataBase.printValues("Error, date is wrong => " + date, NONVALID);
+		return (NONVALID);
+	}
+	else if (year < 2009 && month < 02)
+	{
+		dataBase.printValues("Error, date before bitcoin creation => " + date, NONVALID);
+		return (NONVALID);
+	}
+	else if (month < 1 || month > 12)
+	{
+		dataBase.printValues("Error, month wrong format => " + date, NONVALID);
+		return (NONVALID);
+	}
+	else if (day < 1 || day > 31)
+	{
+		dataBase.printValues("Error, day wrong format => " + date, NONVALID);
+		return (NONVALID);
+	}
+	else if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+	{
+		dataBase.printValues("Error, day wrong format => " + date, NONVALID);
+		return (NONVALID);
+	}
+	else if ((month == 2 && ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)) && day > 29)
+	{
+		dataBase.printValues("Error, february bissextile year => " + date, NONVALID);
+		return (NONVALID);
+	}
+	else if (month == 2 && day > 28)
+	{
+		dataBase.printValues("Error, non bissextile year => " + date, NONVALID);
+		return (NONVALID);
+	}
+	return (VALID);
+}
 
 enum isValid	parseDate( std::string date, Btc& dataBase )
 {
 	if (date.empty())
 		return (NONVALID);
+	
+	std::string::size_type	pos;
+	std::string::size_type	delimiter;
+	int			year = 0;
+	int			month = 0;
+	int			day = 0;
 
-	//size_t			i = 0;
-	//std::string::size_type	pos;
-	//size_t			round = 0;
+	delimiter = date.find('-');
+	year = std::atoi(date.substr(0, delimiter).c_str());
+	pos = delimiter + 1;
+	delimiter = date.find(pos, '-');
+	month = std::atoi(date.substr(pos, delimiter).c_str());
+	pos = delimiter + 1;
+	delimiter = date.find(pos, '|');
+	day = std::atoi(date.substr(pos, delimiter).c_str());
 
-	//while (date[i])
-	//{
-	//	if (date[i] == '-')
-	//	{
-	//		round += 1;
-	//		if (parseYearMonthDay(std::atoi(date.substr(pos, i).c_str()), round, dataBase) == NONVALID)
-	//			return (NONVALID);
-	//	}
-	//}
+	if (parseYearMonthDay(year, month, day, dataBase, date) == NONVALID)
+		return (NONVALID);
+	return (VALID);
+}
+
+enum isValid	parseValue( std::string line, float value, Btc& dataBase )
+{
+	if (value < 1)
+	{
+		dataBase.printValues("Error, value under 1 => " + line, NONVALID);
+		return (NONVALID);
+	}
+	else if (value > 1000)
+	{
+		dataBase.printValues("Error, value over 1000 => " + line, NONVALID);
+		return (NONVALID);
+	}
+	return (VALID);
 }
 
 void	parseUserInput(std::ifstream& file)
@@ -60,6 +110,10 @@ void	parseUserInput(std::ifstream& file)
 			date = line.substr(0, delim);
 			if (parseDate(date, dataBase) == NONVALID)
 				continue ;
+			value = std::atof(line.substr(delim + 1, line.length()).c_str());
+			if (parseValue(line.substr(delim + 1, line.length()), value, dataBase) == NONVALID)
+				continue ;
+			dataBase.printValues(line, VALID);
 		}
 
 	}
