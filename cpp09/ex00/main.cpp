@@ -96,6 +96,27 @@ enum isValid	parseValue( std::string line, float value, Btc& dataBase )
 	return (VALID);
 }
 
+std::string	trimLine( std::string& line )
+{
+	size_t	i = 0;
+	size_t	j = 0;
+	std::string	newLine;
+
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+
+	while (line[j])
+		j++;
+	std::cout << "j value is : " << j << std::endl;
+	while (line[j] == ' ' || line[j] == '\t')
+		j--;
+
+	std::cout << "j value after decrement : " << j <<  std::endl;
+	newLine = line.substr(i, j);
+
+	return (newLine);
+}
+
 void	parseUserInput(std::ifstream& file)
 {
 	Btc			dataBase;
@@ -103,6 +124,7 @@ void	parseUserInput(std::ifstream& file)
 	int			delim;
 	std::string		date;
 	float			value = 0;
+	std::string		newLine;
 
 	while (std::getline(file, line))
 	{
@@ -112,6 +134,8 @@ void	parseUserInput(std::ifstream& file)
 		else
 		{
 			date = line.substr(0, delim);
+			newLine = trimLine(date);
+			std::cout << newLine << std::endl;
 			if (parseDate(date, dataBase) == NONVALID)
 				continue ;
 			value = std::atof(line.substr(delim + 1, line.length()).c_str());

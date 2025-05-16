@@ -27,7 +27,13 @@ class	DateValue
 	public:
 		DateValue();
 		DateValue( int year, int month, int day );
-		DateValue( const std::
+		DateValue( const DateValue& copy );
+		DateValue& operator=( const DateValue& copy );
+
+		void	setYear( int year );
+		void	setMonth( int month );
+		void	setDay( int day );
+		getDate();
 };
 
 #endif
