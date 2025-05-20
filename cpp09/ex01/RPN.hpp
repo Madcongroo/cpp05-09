@@ -15,6 +15,19 @@
 
 #include <iostream>
 #include <string>
+#include <stack>
+
+class	Rpn
+{
+	private:
+		std::stack<int>	_userEntry;
+
+	public:
+		Rpn();
+		Rpn( const Rpn& copy );
+		Rpn& operator=( const Rpn& copy );
+		~Rpn();
+};
 
 
 #endif

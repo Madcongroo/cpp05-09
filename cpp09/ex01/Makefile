@@ -13,11 +13,11 @@
 .POSIX:
 .SUFFIXES:
 
-NAME		=	btc
+NAME		=	RPN
 CC		=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-SRC		=	main.cpp BitcoinExchange.cpp
-INCLUDES	=	BitcoinExchange.hpp
+SRC		=	main.cpp RPN.cpp
+INCLUDES	=	RPN.hpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
