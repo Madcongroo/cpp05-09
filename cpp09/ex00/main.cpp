@@ -14,9 +14,9 @@
 
 enum isValid	parseYearMonthDay( int year, int month, int day, Btc& dataBase, std::string date )
 {
-	std::cout << "year = " << year << std::endl;
-	std::cout << "month = " << month << std::endl;
-	std::cout << "day = " << day << std::endl;
+	//std::cout << "year = " << year << std::endl;
+	//std::cout << "month = " << month << std::endl;
+	//std::cout << "day = " << day << std::endl;
 	if (year == 0 || month == 0 || day == 0)
 	{
 		dataBase.printValues("Error, date is wrong => " + date, NONVALID);
@@ -98,21 +98,14 @@ enum isValid	parseValue( std::string line, float value, Btc& dataBase )
 
 std::string	trimLine( std::string& line )
 {
-	size_t	i = 0;
-	size_t	j = 0;
+	size_t		i = 0;
+	size_t		j = 0;
 	std::string	newLine;
 
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
+	i = line.find_first_not_of(" \t");	
+	j = line.find_last_not_of(" \t");
 
-	while (line[j])
-		j++;
-	std::cout << "j value is : " << j << std::endl;
-	while (line[j] == ' ' || line[j] == '\t')
-		j--;
-
-	std::cout << "j value after decrement : " << j <<  std::endl;
-	newLine = line.substr(i, j);
+	newLine = line.substr(i, j + 1);
 
 	return (newLine);
 }
@@ -123,11 +116,15 @@ void	parseUserInput(std::ifstream& file)
 	std::string		line;
 	int			delim;
 	std::string		date;
-	float			value = 0;
+	float			value;
 	std::string		newLine;
+	std::ostringstream	newValue;
 
 	while (std::getline(file, line))
 	{
+		value = 0;
+		newValue.str("");
+		newValue.clear();
 		delim = line.find('|');
 		if (delim == -1)
 			dataBase.printValues("Date and value not separated with '|'", NONVALID);
@@ -135,13 +132,13 @@ void	parseUserInput(std::ifstream& file)
 		{
 			date = line.substr(0, delim);
 			newLine = trimLine(date);
-			std::cout << newLine << std::endl;
-			if (parseDate(date, dataBase) == NONVALID)
+			if (parseDate(newLine, dataBase) == NONVALID)
 				continue ;
 			value = std::atof(line.substr(delim + 1, line.length()).c_str());
 			if (parseValue(line.substr(delim + 1, line.length()), value, dataBase) == NONVALID)
 				continue ;
-			dataBase.printValues(line, VALID);
+			newValue << value;
+			dataBase.printValues(newLine + '|' + newValue.str(), VALID);
 		}
 	}
 }

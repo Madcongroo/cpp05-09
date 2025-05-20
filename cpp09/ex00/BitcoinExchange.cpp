@@ -86,25 +86,16 @@ void	Btc::printValues( std::string value, enum isValid flag )
 		return ;
 	}
 
-	std::cout << "IS IN PRINTVALUES" << std::endl;
-	std::cout << value << std::endl;
-
 	std::string	date = value.substr(0, value.find('|'));
 	float		BtcNumber = 0;	
 	std::map<std::string, float>::iterator search;
 	std::map<std::string, float>::iterator lowerBoundIt;
 
 	BtcNumber = std::atof(value.substr(value.find('|') + 1, value.length()).c_str());
-	std::cout << "after btcnumber" << std::endl;
-	std::cout << BtcNumber << std::endl;
 	search = this->_dataBase.find(date);
-	std::cout << "after search" << std::endl;
-	std::cout << date << std::endl;
-	if (this->_dataBase.find(date)->first.empty())
+	if (this->_dataBase.find(date) == this->_dataBase.end())
 	{
-		std::cout << "before lower bound search" << std::endl;
 		lowerBoundIt = this->_dataBase.lower_bound(date);
-		std::cout << "after lowerbound" << std::endl;
 		std::cout << lowerBoundIt->first << " => " << lowerBoundIt->second << " = " << lowerBoundIt->second * BtcNumber << std::endl;
 		return ;
 	}

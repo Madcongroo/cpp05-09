@@ -20,7 +20,7 @@
 #include <exception>
 #include <cstdlib>
 #include <utility>
-
+#include <sstream>
 
 enum	isValid
 {
