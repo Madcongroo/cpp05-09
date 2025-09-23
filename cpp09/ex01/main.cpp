@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:51 by proton            #+#    #+#             */
-/*   Updated: 2025/05/20 15:56:44 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/23 15:30:59 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	firstInputParsing( std::string& userInput )
 		if (userInput[i] != ' ' && (userInput[i + 1] == '*' || userInput[i + 1] == '/'
 			|| userInput[i + 1] == '+' || userInput[i + 1] == '-'))
 				userInput.insert(i, 1, ' ');
-		std::cout << "sadf" << std::endl;
 		i++;
 	}
 }
@@ -33,9 +32,11 @@ int	main( int ac, char **av )
 		std::cerr << "Error, wrong number of arguments" << std::endl;
 		return (1);
 	}
+	Rpn j;
 	std::string userInput = av[1];
 	firstInputParsing( userInput );
 	std::cout << userInput << std::endl;
+	std::cout << j.processCalculation(userInput) << std::endl;
 	return (0);
 }
 
