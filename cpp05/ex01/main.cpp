@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:44:21 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 15:24:39 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/23 11:20:30 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main(void)
 {
 	try {
 			Form	f;
-			Bureaucrat j("nom", 42);
+			Bureaucrat j("nom", 20);
 			j.signForm(f);
 			j.execForm(f);
+			std::cout << f.getSignd() << std::endl;
 			std::cout << f << std::endl;
 	}
 

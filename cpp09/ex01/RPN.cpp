@@ -38,3 +38,17 @@ Rpn::~Rpn()
 	std::cout << "rpn destructor" << std::endl;
 }
 
+//int	Rpn::processCalculation( std::string& userInput )
+//{
+//	std::string	token;
+//	int		i = 0;
+//	while (userInput[i])
+//	{
+//		token = userInput.substr(i, i + 1);
+//		if (token[0] == ' ')
+//		{
+//			token.clear();
+//			continue ;
+//		}
+//	}
+//}

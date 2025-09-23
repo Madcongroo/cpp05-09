@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:44:21 by proton            #+#    #+#             */
-/*   Updated: 2025/04/13 11:23:52 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/23 11:33:31 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,17 @@ int	main(void)
 	try {
 			Bureaucrat j("BUREAUCRAT", 1);
 			AForm *shrub = new ShrubberyCreationForm("HUMANOID");
+			AForm *robot = new RobotomyRequestForm("HUMAN");
+			AForm *presi = new PresidentialPardonForm("GOD");
 			j.signForm(*shrub);
 			j.executeForm(*shrub);
+			j.signForm(*robot);
+			j.executeForm(*robot);
+			j.signForm(*presi);
+			j.executeForm(*presi);
 			delete shrub;
+			delete robot;
+			delete presi;
 	}
 
 	catch (const Bureaucrat::GradeTooHighException& e)

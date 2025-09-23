@@ -20,13 +20,15 @@
 class	Rpn
 {
 	private:
-		std::stack<int>	_userEntry;
+		std::stack<int>	_calculation;
 
 	public:
 		Rpn();
 		Rpn( const Rpn& copy );
 		Rpn& operator=( const Rpn& copy );
 		~Rpn();
+
+		//int	processCalculation( std::string& userInput );
 };
 
 

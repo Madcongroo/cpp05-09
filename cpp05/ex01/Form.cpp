@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:42:31 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/11 10:15:19 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/23 11:19:13 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ const char* Form::GradeTooLowException::what() const throw()
 
 std::ostream& operator<<( std::ostream& os, const Form& instance )
 {
-	os << "Form name :" << instance.getName() << " is " << instance.getSignd() << ", rank required to sign and to exec : " << instance.getGradeToSignd() << " : " << instance.getGradeToExec();
+	os << "Form name : " << instance.getName() << " is " << instance.getSignd() << ", rank required to sign and to exec : " << instance.getGradeToSignd() << " : " << instance.getGradeToExec();
 	return (os);
 }

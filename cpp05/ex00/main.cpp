@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:44:21 by proton            #+#    #+#             */
-/*   Updated: 2025/04/09 11:34:13 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/23 11:02:38 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 int	main(void)
 {
-	Bureaucrat	test("bonjour", 40);
 	try {
-			Bureaucrat h("air", 0);
+			Bureaucrat	test("bonjour", 40);
+			Bureaucrat 	test2("hello", 0);
+			Bureaucrat  test3("salut", 151);
+			Bureaucrat h("air", 2);
 			std::cout << h << std::endl;
 			h.incrementGrade();
 			std::cout << h << std::endl;
 			h.decrementGrade();
 			std::cout << h << std::endl;
-			Bureaucrat j("loom", 151);
 	}
 
 	catch (const Bureaucrat::GradeTooHighException& e)

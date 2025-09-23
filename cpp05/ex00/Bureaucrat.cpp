@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/04/09 14:11:09 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/23 10:58:42 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
 	std::cout << "in constructor direct assignation grade / name" << std::endl;
 
 		if (grade < 1)
-			throw (GradeTooHighException());
+			throw (GradeTooHighException("Grade is too high it cannot be assigned"));
 		
 		else if (grade > 150)
-			throw (GradeTooLowException());
+			throw (GradeTooLowException("Grade is too low it cannot be assigned"));
 		
 		else
 			_grade = grade;

@@ -12,28 +12,30 @@
 
 #include "RPN.hpp"
 
-int	parseUserInput(char **av)
+void	firstInputParsing( std::string& userInput )
 {
-	(void)av;
-	return (1);	
+	size_t	i = 0;
+
+	while (userInput[i])
+	{
+		if (userInput[i] != ' ' && (userInput[i + 1] == '*' || userInput[i + 1] == '/'
+			|| userInput[i + 1] == '+' || userInput[i + 1] == '-'))
+				userInput.insert(i, 1, ' ');
+		std::cout << "sadf" << std::endl;
+		i++;
+	}
 }
 
 int	main( int ac, char **av )
 {
-	if (ac < 2)
+	if (ac != 2)
 	{
-		std::cerr << "not enough arguments" << std::endl;
+		std::cerr << "Error, wrong number of arguments" << std::endl;
 		return (1);
 	}
-	std::cout << ac << std::endl;
-	
-	int i = 1;
-	while (i < ac)
-	{
-		std::cout << av[i] << std::endl;
-		i++;
-	}
-	//if (parseUserInput(av) == -1)
-	//	return (1);
+	std::string userInput = av[1];
+	firstInputParsing( userInput );
+	std::cout << userInput << std::endl;
+	return (0);
 }
 
