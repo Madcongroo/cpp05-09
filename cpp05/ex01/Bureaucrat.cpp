@@ -6,7 +6,7 @@
 /*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/04/10 15:16:10 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/24 13:11:30 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
 
 		if (grade < 1)
 			throw (GradeTooHighException());
-		
+
 		else if (grade > 150)
 			throw (GradeTooLowException());
-		
+
 		else
 			_grade = grade;
-	
+
 	return ;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& copy )
 {
 	std::cout << "copy constructor BUREAUCRAT called" << std::endl;
-	
+
 	*this = copy;
 
 	return ;
