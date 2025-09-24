@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:09:09 by proton            #+#    #+#             */
-/*   Updated: 2025/09/23 15:41:17 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:08:12 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Rpn::Rpn()
 {
-	std::cout << "default constructor" << std::endl;
 }
 
 Rpn::Rpn( const Rpn& copy )
@@ -25,17 +24,13 @@ Rpn::Rpn( const Rpn& copy )
 
 Rpn& Rpn::operator=( const Rpn& copy )
 {
+	(void)copy;
 	std::cout << "copy assignation constructor" << std::endl;
-	if (this != &copy)
-	{
-		
-	}
 	return (*this);
 }
 
 Rpn::~Rpn()
 {
-	std::cout << "rpn destructor" << std::endl;
 }
 
 int	Rpn::processCalculation( std::string& userInput )
@@ -51,44 +46,42 @@ int	Rpn::processCalculation( std::string& userInput )
 
 	while (sstream >> token)
 	{
-		std::cout << token << std::endl;
 		if (token != "+" && token != "-" && token != "*" && token != "/")
 			stack.push(std::atoi(token.c_str()));
 		else
 		{
 			if (token == "*")
 			{
-				value1 = stack.top();
-				stack.pop();
 				value2 = stack.top();
+				stack.pop();
+				value1 = stack.top();
 				result = value1 * value2;
 				stack.pop();
 			}
 			else if (token == "-")
 			{
-				value1 = stack.top();
-				stack.pop();
 				value2 = stack.top();
+				stack.pop();
+				value1 = stack.top();
 				result = value1 - value2;
 				stack.pop();
 			}
 			else if (token == "+")
 			{
-				value1 = stack.top();
-				stack.pop();
 				value2 = stack.top();
+				stack.pop();
+				value1 = stack.top();
 				result = value1 + value2;
 				stack.pop();
 			}
 			else if (token == "/")
 			{
-				value1 = stack.top();
-				stack.pop();
 				value2 = stack.top();
+				stack.pop();
+				value1 = stack.top();
 				result = value1 / value2;
 				stack.pop();
 			}
-			std::cout << "RESULT : " <<  result << std::endl;
 			stack.push(result);
 		}
 	}

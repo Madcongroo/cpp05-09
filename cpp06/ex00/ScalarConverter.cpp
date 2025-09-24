@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 17:41:02 by proton            #+#    #+#             */
-/*   Updated: 2025/04/16 13:41:04 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/24 09:49:47 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ ScalarConverter& ScalarConverter::operator=( const ScalarConverter& copy )
 
 ScalarConverter::~ScalarConverter()
 {
-	std::cout << "In scalarConverter destrucor" << std::endl;
-	
+	std::cout << "In scalarConverter destructor" << std::endl;
 }
 
 

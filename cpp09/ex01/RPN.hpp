@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 11:33:43 by proton            #+#    #+#             */
-/*   Updated: 2025/09/23 15:29:46 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:06:58 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@
 
 class	Rpn
 {
-	// private:
-	// 	std::stack<int>	_calculation;
+	private:
+		Rpn( const Rpn& copy );
+		Rpn& operator=( const Rpn& copy );
 
 	public:
 		Rpn();
-		Rpn( const Rpn& copy );
-		Rpn& operator=( const Rpn& copy );
 		~Rpn();
 
 		int	processCalculation( std::string& userInput );

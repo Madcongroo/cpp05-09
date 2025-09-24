@@ -3,26 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:51 by proton            #+#    #+#             */
-/*   Updated: 2025/09/23 15:30:59 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:05:51 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-void	firstInputParsing( std::string& userInput )
+int firstInputParsing( std::string& userInput )
 {
-	size_t	i = 0;
+	std::stringstream	ss;
+	std::string			token;
+	int					num;
+	ss << userInput;
 
-	while (userInput[i])
+	while (ss >> token)
 	{
-		if (userInput[i] != ' ' && (userInput[i + 1] == '*' || userInput[i + 1] == '/'
-			|| userInput[i + 1] == '+' || userInput[i + 1] == '-'))
-				userInput.insert(i, 1, ' ');
-		i++;
+		if (token != "+" && token != "-" && token != "*" && token != "/")
+		{
+			num = std::atoi(token.c_str());
+			if (num == 0)
+			{
+				std::cerr << "Error" << std::endl;
+				return (-1);
+			}
+			if (num > 9 || num < 0)
+			{
+				std::cerr << "Error" << std::endl;
+				exit (1);
+			}
+		}
 	}
+	return (0);
 }
 
 int	main( int ac, char **av )
@@ -34,8 +48,8 @@ int	main( int ac, char **av )
 	}
 	Rpn j;
 	std::string userInput = av[1];
-	firstInputParsing( userInput );
-	std::cout << userInput << std::endl;
+	if (firstInputParsing( userInput ) == -1)
+		return (1);
 	std::cout << j.processCalculation(userInput) << std::endl;
 	return (0);
 }

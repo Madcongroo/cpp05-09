@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ParseScalar.hpp                                    :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 11:11:28 by proton            #+#    #+#             */
-/*   Updated: 2025/09/24 09:46:53 by proton           ###   ########.fr       */
+/*   Created: 2025/09/23 17:10:28 by proton            #+#    #+#             */
+/*   Updated: 2025/09/24 10:29:25 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSESCALAR_HPP
-#define PARSESCALAR_HPP
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
 
 #include <iostream>
 #include <string>
-#include <iomanip>
-#include <limits.h>
-#include <float.h>
+#include <algorithm>
 #include <sstream>
+#include <list>
+#include <vector>
+#include <ctime>
+#include <deque>
 
-#include "ScalarConverter.hpp"
 
-#define ISCHAR   1
-#define ISINT    2
-#define ISFLOAT  3
-#define ISDOUBLE 4
-#define ISBAD    0
-
-int	parseScalar( const std::string &input );
 
 #endif
