@@ -3,47 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/09/24 15:47:20 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/25 12:06:42 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-void    swapElements( std::deque<int> &sequence, size_t index, size_t numInPair)
+void swapElements(std::deque<int> &sequence, size_t index, size_t numInPair)
 {
-    for (size_t i = index; i < numInPair; i++)
+    if (index + numInPair > sequence.size() || numInPair % 2 != 0)
     {
-        if ()
+        std::cerr << "Erreur: bloc invalide pour swap" << std::endl;
+        return;
     }
+
+    size_t half = numInPair / 2;
+
+    std::deque<int>::iterator first  = sequence.begin() + index;
+    std::deque<int>::iterator middle = first + half;
+    std::deque<int>::iterator last   = first + numInPair;
+
+    std::rotate(first, middle, last);
 }
 
-void    compairPairs( std::deque<int>&sequence, std::deque<std::pair<int, int>> &pairs, size_t numInPair )
+void    compairPairs( std::deque<int>&sequence, size_t numInPair )
 {
     size_t sequenceSize = sequence.size();
 
     for (size_t i = 0; i < sequenceSize; i+=numInPair)
     {
-        if (sequence[i + numInPair / 2] > sequence[i + numInPair - 1])
-            swapElements( sequence, numInPair, i );
+        if (sequence[i + numInPair / 2 - 1] > sequence[i + numInPair - 1]) // pour savoir si le dernier nombre de chaque pair est plus petit ou plus grand que le dernier nombre de la pair suivante
+            swapElements( sequence, i, numInPair );
     }
+
+    std::deque<int> main;
+    std::deque<int> pend;
+
+    
+
+    for (size_t i = 0; i < sequenceSize; i++)
+    {
+        std::cout << sequence[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
 int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t numInPairs )
 {
-    std::deque<std::pair<int, int>> pairs;
     size_t  sequenceSize = sequence.size();
 
-    for (size_t i = 0; i < sequenceSize; i+=2)
-        pairs.push_back(std::pair<int, int>(sequence[i], sequence[i + 1]));
-
-    compairPairs( sequence, pairs, numInPairs );
+    std::cout << "lvl of recursion before compair pairs " << recursionlvl << std::endl;
+    compairPairs( sequence, numInPairs );
     
-    if ((numInPairs * 2) < (sequenceSize / 2))
+    if ((numInPairs * 2) <= sequenceSize)
         sortNumbers( sequence, recursionlvl + 1, numInPairs * 2 );
-    
+
+    std::cout << "RECUSION LVL : " << recursionlvl << ", sequence : ";
+    for (size_t i = 0; i < sequenceSize; i++)
+    {
+        std::cout << sequence[i] << " ";
+    }
+    std::cout << std::endl;
+    return (0);
 }
 
 int main(int ac, char **av)
@@ -58,11 +82,11 @@ int main(int ac, char **av)
     int             time;
 
     std::cout << "Before: ";
-    for (size_t i = 1; i < ac; i++)
+    for (int i = 1; i < ac; i++)
         std::cout << av[i] << " ";
     std::cout << std::endl;
 
-    for (size_t i = 1; i < ac; i++)
+    for (int i = 1; i < ac; i++)
     {
         int num = std::atoi(av[i]);
         if (num < 0)
@@ -75,5 +99,7 @@ int main(int ac, char **av)
 
     time = sortNumbers(sequence, 1, 2);
 
-    
+    std::cout << time << std::endl;
+
+    return (0);
 }

@@ -6,7 +6,7 @@
 #    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/23 17:09:58 by proton            #+#    #+#              #
-#    Updated: 2025/09/23 17:10:17 by proton           ###   ########.fr        #
+#    Updated: 2025/09/24 17:09:25 by proton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@
 NAME		=	PmergeMe
 CC		=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-SRC		=	main.cpp RPN.cpp
-INCLUDES	=	RPN.hpp
+SRC		=	main.cpp PmergeMe.cpp
+INCLUDES	=	PmergeMe.hpp
 
 OBJS		=	$(SRC:.cpp=.o)
 
