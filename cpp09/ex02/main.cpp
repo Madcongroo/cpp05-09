@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/09/25 13:08:50 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/25 15:52:07 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,32 @@ void    compairPairs( std::deque<int>&sequence, size_t numInPair )
 
 void initialisePend( std::deque<int> &pend, std::deque<int> &sequence, size_t numInPair )
 {
-    (void)sequence;
-    // size_t sequenceSize = sequence.size();
-    size_t startIndex = numInPair - 1;
-    (void)pend;
+    size_t sequenceSize = sequence.size();
+    size_t startIndex = numInPair;
 
-    std::cout << "START INDEX " << startIndex << std::endl;
+    for (size_t i = startIndex; (i + numInPair) < sequenceSize; i++)
+    {
+        if (i - startIndex == numInPair / 2)
+            i += sequenceSize;
+
+        std::cout << "I - start index VALUE " << i - startIndex << std::endl;
+        pend.push_back(sequence[i]);
+        sequence.erase(sequence.begin() + i, sequence.begin() + (i + 1));
+    //     for (size_t i = 0; i < sequence.size(); i++)
+    // {
+    //     std::cout << sequence[i] << " ";
+    // }
+    // std::cout << std::endl;
+
+        sequenceSize -= 1;
+    }
+
+    std::cout << "IN PEND INITIALISATION " << std::endl;
+    for (size_t i = 0; i < pend.size(); i++)
+    {
+        std::cout << pend[i] << " ";
+    }
+    std::cout << std::endl;
 
 }
 
@@ -64,20 +84,25 @@ int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t numInPairs 
     std::cout << "lvl of recursion before compair pairs " << recursionlvl << std::endl;
     compairPairs( sequence, numInPairs );
     
+    std::cout << "NUM IN PAIRS IN MAIN FUNCTION <<<<<<<<<<<<<<" << numInPairs << std::endl;
     if ((numInPairs * 2) <= sequenceSize)
         sortNumbers( sequence, recursionlvl + 1, numInPairs * 2 );
 
-        
+    if (numInPairs * 2 > sequenceSize)
+        return (0);
+
     std::deque<int> pend;
+
+    std::cout << "LVL OF RECURSION " << recursionlvl << std::endl;
 
     initialisePend(pend, sequence, numInPairs);
 
-    std::cout << "RECUSION LVL : " << recursionlvl << ", sequence : ";
-    for (size_t i = 0; i < sequenceSize; i++)
-    {
-        std::cout << sequence[i] << " ";
-    }
-    std::cout << std::endl;
+    // std::cout << "RECUSION LVL : " << recursionlvl << ", sequence : ";
+    // for (size_t i = 0; i < sequenceSize; i++)
+    // {
+    //     std::cout << sequence[i] << " ";
+    // }
+    // std::cout << std::endl;
     return (0);
 }
 
