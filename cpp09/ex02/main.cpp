@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/09/25 12:06:42 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/25 13:08:50 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,22 @@ void    compairPairs( std::deque<int>&sequence, size_t numInPair )
             swapElements( sequence, i, numInPair );
     }
 
-    std::deque<int> main;
-    std::deque<int> pend;
-
-    
-
     for (size_t i = 0; i < sequenceSize; i++)
     {
         std::cout << sequence[i] << " ";
     }
     std::cout << std::endl;
+}
+
+void initialisePend( std::deque<int> &pend, std::deque<int> &sequence, size_t numInPair )
+{
+    (void)sequence;
+    // size_t sequenceSize = sequence.size();
+    size_t startIndex = numInPair - 1;
+    (void)pend;
+
+    std::cout << "START INDEX " << startIndex << std::endl;
+
 }
 
 int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t numInPairs )
@@ -60,6 +66,11 @@ int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t numInPairs 
     
     if ((numInPairs * 2) <= sequenceSize)
         sortNumbers( sequence, recursionlvl + 1, numInPairs * 2 );
+
+        
+    std::deque<int> pend;
+
+    initialisePend(pend, sequence, numInPairs);
 
     std::cout << "RECUSION LVL : " << recursionlvl << ", sequence : ";
     for (size_t i = 0; i < sequenceSize; i++)
