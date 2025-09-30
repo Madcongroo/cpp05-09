@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/09/30 11:37:07 by proton           ###   ########.fr       */
+/*   Updated: 2025/09/30 15:43:30 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,23 +131,6 @@ void    initialiseJacobstahlNumbers( std::deque<int> &jacobstahlNumbers )
     jacobstahlNumbers.pop_front(); // removing the first 1, because we dont need it
 }
 
-// void    insertSimpleElements( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link, size_t numInPairs )
-// {
-//     size_t  pendSize = pend.size();
-//     size_t  i = pendSize;
-
-//     while (i > 0)
-//     {
-//         int foundLink = findInLink(pend[i - 1], link);
-
-//         if (foundLink != -1)
-//         {
-            
-//         }
-//     }
-    
-// }
-
 void    fillNumsToInsert(std::deque<int> &numsToInsert, std::list<t_link> &link, std::deque<int> &pend, size_t numInPairs, int howManyElements, int startPend )
 {
     if (startPend > howManyElements)
@@ -186,9 +169,65 @@ void    fillNumsToInsert(std::deque<int> &numsToInsert, std::list<t_link> &link,
 void    insertElements( std::deque<int> &sequence, std::deque<int> &newPend, std::list<t_link> &link, size_t numInPairs )
 {
     size_t linkSize = link.size();
-    size_t  newPendSize = newPend.size() - 1;
+    size_t  newPendSize = newPend.size();
+    size_t  sequenceSize = sequence.size();
+    std::list<t_link>::iterator it = link.begin();
 
-    for (size_t i = newPendSize; )
+    for (size_t i = newPendSize - 1; i > 0;)
+    {
+        for (;it != link.end(); it++)
+        {
+            if (it->b == newPend[i])
+                break ;
+        }
+        if (it->a == -1)
+        {
+            for (size_t temp = numInPairs /2 -1; temp < sequence.size(); temp += numInPairs /2)
+            {
+                if (temp + numInPairs /2 > sequence.size())
+                    it->a == sequence[temp];
+            }
+        }
+        for (size_t j = numInPairs / 2 - 1; sequence[j] != it->a;) // je dois regarder pour si le a == -1, si il est a -1 je dois chercher dans toute la sequence main mais sans compter les nombres qui restent
+        {
+            int first;
+            int next;
+            if (j + numInPairs /2 > sequence.size())
+                next = sequence[j];
+            else
+                next = sequence[j + numInPairs / 2];
+            first = sequence[j];
+            
+            // if (first == next) // means that the sequence can only be placed at the end of main
+            // {
+            //     int a = i - numInPairs /2 + 1; // pour lui donner l index du premier des la newpend que je dois actuellement inserer
+            //     while (a < i + numInPairs /2)
+            //     {
+            //         sequence.insert()
+            //     }
+            // }
+            if (newPend[i] > first && newPend[i] < next)
+            {
+                std::deque<int>::iterator itMain = sequence.begin();
+                for (; itMain != sequence.end(); itMain++)
+                {
+                    if (*itMain == sequence[j])
+                        break ;
+                }
+                int a = i - numInPairs /2 + 1; // pour lui donner l index du premier des la newpend que je dois actuellement inserer
+                while (a < i + numInPairs /2)
+                {
+                   sequence.insert(itMain, newPend[a]);
+                   newPend.erase(newPend.begin() + a, newPend.begin() + (a + 1));
+                   itMain++;
+                   a++;
+                }
+            }
+            
+            
+        }
+        newPendSize -= numInPairs / 2;
+    }
 }
 
 void    startInsertion( std::deque<int> &sequence, std::deque<int> &pend, size_t numInPairs, std::list<t_link> &link )
