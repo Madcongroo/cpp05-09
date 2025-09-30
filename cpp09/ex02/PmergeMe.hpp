@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:10:28 by proton            #+#    #+#             */
-/*   Updated: 2025/09/25 13:20:05 by bproton          ###   ########.fr       */
+/*   Updated: 2025/09/26 11:45:37 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@
 #include <ctime>
 #include <deque>
 
-
+typedef struct s_link
+{
+    int bNumber; // the b number
+    int b;
+    int a;
+}   t_link;
 
 
 
