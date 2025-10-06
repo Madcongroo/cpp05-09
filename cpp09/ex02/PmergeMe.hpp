@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:10:28 by proton            #+#    #+#             */
-/*   Updated: 2025/09/26 11:45:37 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/06 12:01:19 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <vector>
 #include <ctime>
 #include <deque>
+#include <stdlib.h>
 
 typedef struct s_link
 {
