@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/10/07 10:03:24 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/07 14:46:29 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -432,9 +432,66 @@ void    compairPairs( std::deque<int>&sequence )
     }
 }
 
+void    initialiseJacobstahlNumbers( std::deque<int> &jacobstahlNumbers )
+{
+    jacobstahlNumbers.push_back(1);
+    jacobstahlNumbers.push_back(1);
+
+    size_t i = 2;
+    while (true)
+    {
+        size_t next = jacobstahlNumbers[i - 1] + 2 * jacobstahlNumbers[i - 2];
+        if (next > 5461)
+            break ;
+        jacobstahlNumbers.push_back(next);
+        i++;
+    }
+}
+
+void    insertNumber( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link, size_t pendIdx )
+{
+    std::list<t_link>::iterator it = link.begin();
+
+    for (; it != link.end(); it++)
+    {
+        if (it->bNumber == pendIdx)
+            break ;
+    }
+
+    size_t mainIdx = 0;
+    for (; sequence[mainIdx] != it->a; )
+        mainIdx++;
+    for (; mainIdx < sequence.size(); mainIdx++)
+    {
+        size_t next = sequence[mainIdx + 1];
+        size_t current = sequence[mainIdx];
+        if (pend[pendIdx] < next && pend[pendIdx] > current)
+            sequence.insert(mainIdx, pend[pendIdx]);
+    }
+}
+
 void    insertPend( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link )
 {
+    std::deque<int> jacobstahl;
     
+    initialiseJacobstahlNumbers(jacobstahl);
+
+    size_t jacIdx = 0;
+    for (jacIdx = 0; jacIdx < jacobstahl.size(); jacIdx++)
+    {
+        if (jacobstahl[jacIdx] > pend.size())
+        {
+            jacIdx--;
+            break ;
+        }
+    }
+
+    for (; jacIdx > 0; jacIdx--)
+    {
+        size_t pendIdx = jacobstahl[jacIdx] - 1;
+        
+        insertNumber(sequence, pend, link, pendIdx);
+    }
 }
 
 int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t pairSize )
