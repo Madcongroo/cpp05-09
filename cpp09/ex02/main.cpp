@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/10/06 16:05:48 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/07 10:03:24 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,17 +355,53 @@
 //     return (0);
 // }
 
+void    makeLink( std::deque<int> &sequence, std::list<t_link> &link )
+{
+    size_t j = 1;
+
+    for (size_t i = 0; i < sequence.size(); i += 2)
+    {
+        t_link temp;
+        temp.a = sequence[i];
+        if (i + 1 >= sequence.size())
+            temp.b = -1;
+        else
+            temp.b = sequence[i + 1];
+        temp.bNumber = j;
+        link.push_back(temp);
+        j++;
+    }
+    for(size_t i = 0; i < sequence.size(); i++)
+        std::cout << sequence[i] << " ";
+    std::cout << ": sequence after sort" << std::endl;
+
+    for(std::list<t_link>::iterator it = link.begin(); it != link.end(); it++)
+    {
+        std::cout << "a : " << it->a << " ";
+        std::cout << "b : " << it->b << " ";
+        std::cout << "bNumber : " << it->bNumber << std::endl;
+    }
+
+}
+
 
 void    separatePairs( std::deque<int> &sequence, std::deque<int> &pend )
 {
-    size_t odd;
-    size_t sequenceSize = sequence.size();
+    std::deque<int> newMain;
+    size_t n = sequence.size();
 
-    for (size_t i = 0; i < sequence.size() / 2;)
+    for (size_t i = 0; i + 1 < n; i += 2)
     {
-        pend.push_back(sequence[i]);
-        
+        int a = std::min(sequence[i], sequence[i + 1]);
+        int b = std::max(sequence[i], sequence[i + 1]);
+        newMain.push_back(a);
+        pend.push_back(b);
     }
+
+    if (n % 2 != 0)
+        newMain.push_back(sequence.back());
+        
+    sequence = newMain;
 }
 
 void swapElements(std::deque<int> &sequence, size_t index, size_t numInPair)
@@ -396,21 +432,49 @@ void    compairPairs( std::deque<int>&sequence )
     }
 }
 
-int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t numInPairs )
+void    insertPend( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link )
+{
+    
+}
+
+int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t pairSize )
 {
     size_t  sequenceSize = sequence.size();
     size_t  odd = 0;
     std::deque<int> pend;
+    std::list<t_link>   link;
 
-    if (sequenceSize % 2 == 1)
-        odd = 1;
+    // std::cout << "RECUSTION LVL " << recursionlvl << std::endl;
+
+    // for(size_t i = 0; i < sequence.size(); i++)
+    //     std::cout << sequence[i] << " ";
+    // std::cout << ": full sequence before sort" << std::endl;
 
     compairPairs(sequence);
 
+    makeLink(sequence, link);
+
+
+    // for(size_t i = 0; i < sequence.size(); i++)
+    //     std::cout << sequence[i] << " ";
+    // std::cout << ": full sequence after sort" << std::endl;
     separatePairs(sequence, pend);
 
-    if (sequenceSize > 2)
-        sortNumbers( pend, recursionlvl + 1, 2 );
+    if (sequence.size() > 2)
+        sortNumbers(sequence, recursionlvl +1, pairSize);
+
+    insertPend(sequence, pend, link);
+
+    // for(size_t i = 0; i < sequence.size(); i++)
+    //     std::cout << sequence[i] << " ";
+    // std::cout << ": main" << std::endl;
+    
+    // for(size_t i = 0; i < pend.size(); i++)
+    //     std::cout << pend[i] << " ";
+    // std::cout << ": pend" << std::endl;
+
+    // if (sequenceSize > 2)
+    //     sortNumbers( sequence, recursionlvl + 1, pairSize );
 
     
 
@@ -447,9 +511,9 @@ int main(int ac, char **av)
 
     time = sortNumbers(sequence, 1, 2);
 
-    for (size_t i = 0; i < sequence.size(); i++)
-        std::cout << sequence[i] << " ";
-    std::cout << std::endl;
+    // for (size_t i = 0; i < sequence.size(); i++)
+    //     std::cout << sequence[i] << " ";
+    // std::cout << std::endl;
 
     std::cout << time << std::endl;
 
