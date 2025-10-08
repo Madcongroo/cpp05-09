@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/10/07 14:46:29 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/08 10:34:49 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -371,16 +371,16 @@ void    makeLink( std::deque<int> &sequence, std::list<t_link> &link )
         link.push_back(temp);
         j++;
     }
-    for(size_t i = 0; i < sequence.size(); i++)
-        std::cout << sequence[i] << " ";
-    std::cout << ": sequence after sort" << std::endl;
+    // for(size_t i = 0; i < sequence.size(); i++)
+    //     std::cout << sequence[i] << " ";
+    // std::cout << ": sequence after sort" << std::endl;
 
-    for(std::list<t_link>::iterator it = link.begin(); it != link.end(); it++)
-    {
-        std::cout << "a : " << it->a << " ";
-        std::cout << "b : " << it->b << " ";
-        std::cout << "bNumber : " << it->bNumber << std::endl;
-    }
+    // for(std::list<t_link>::iterator it = link.begin(); it != link.end(); it++)
+    // {
+    //     std::cout << "a : " << it->a << " ";
+    //     std::cout << "b : " << it->b << " ";
+    //     std::cout << "bNumber : " << it->bNumber << std::endl;
+    // }
 
 }
 
@@ -407,10 +407,7 @@ void    separatePairs( std::deque<int> &sequence, std::deque<int> &pend )
 void swapElements(std::deque<int> &sequence, size_t index, size_t numInPair)
 {
     if (index + numInPair > sequence.size() || numInPair % 2 != 0)
-    {
-        std::cerr << "Erreur: bloc invalide pour swap" << std::endl;
         return;
-    }
 
     size_t half = numInPair / 2;
 
@@ -448,60 +445,120 @@ void    initialiseJacobstahlNumbers( std::deque<int> &jacobstahlNumbers )
     }
 }
 
-void    insertNumber( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link, size_t pendIdx )
-{
-    std::list<t_link>::iterator it = link.begin();
+// void    insertNumber( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link, int pendIdx )
+// {
+//     std::list<t_link>::iterator it = link.begin();
 
-    for (; it != link.end(); it++)
+//     if (pendIdx == 0)
+//         pendIdx = 1;
+//     for (; it != link.end(); it++)
+//     {
+//         if (it->bNumber == pendIdx)
+//             break ;
+//     }
+
+//     size_t mainIdx = 0;
+//     for (; sequence[mainIdx] != it->a; )
+//         mainIdx++;
+//     for (; mainIdx < sequence.size(); mainIdx++)
+//     {
+//         int next;
+//         if (mainIdx + 1 > sequence.size() -1)
+//             next = sequence[mainIdx + 1];
+//         else
+//             next = sequence[mainIdx];
+//         int current = sequence[mainIdx];
+//         std::deque<int>::iterator itInsert = sequence.begin();
+//         for (; itInsert != sequence.end(); itInsert++)
+//         {
+//             if (*itInsert == sequence[mainIdx])
+//                 break ;
+//         }
+//         if (current == next)
+//         {
+//             sequence.push_back(pend[pendIdx]);
+//             pend.erase(pend.begin() + pendIdx, pend.begin() + (pendIdx + 1));
+//         }
+//         if (pend[pendIdx] < next && pend[pendIdx] > current)
+//         {
+//             sequence.insert(itInsert, pend[pendIdx]);
+//             pend.erase(pend.begin() + pendIdx, pend.begin() + (pendIdx + 1));
+//         }
+//     }
+// }
+
+void insertNumber(std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link, int pendIdx)
+{
+    if (pendIdx < 0 || pendIdx >= (int)pend.size())
+        return;
+
+    std::list<t_link>::iterator it = link.begin();
+    for (; it != link.end(); ++it)
     {
-        if (it->bNumber == pendIdx)
-            break ;
+        if (it->bNumber == pendIdx + 1)
+            break;
     }
+    if (it == link.end())
+        return;
 
     size_t mainIdx = 0;
-    for (; sequence[mainIdx] != it->a; )
+    while (mainIdx < sequence.size() && sequence[mainIdx] != it->a)
         mainIdx++;
-    for (; mainIdx < sequence.size(); mainIdx++)
+    if (mainIdx == sequence.size())
+        return;
+
+    int value = pend[pendIdx];
+
+    for (; mainIdx < sequence.size(); ++mainIdx)
     {
-        size_t next = sequence[mainIdx + 1];
-        size_t current = sequence[mainIdx];
-        if (pend[pendIdx] < next && pend[pendIdx] > current)
-            sequence.insert(mainIdx, pend[pendIdx]);
+        int current = sequence[mainIdx];
+        int next = (mainIdx + 1 < sequence.size()) ? sequence[mainIdx + 1] : sequence[mainIdx];
+
+        if (value > current && value < next)
+        {
+            sequence.insert(sequence.begin() + mainIdx + 1, value);
+            pend.erase(pend.begin() + pendIdx);
+            return;
+        }
     }
+
+    sequence.push_back(value);
+    pend.erase(pend.begin() + pendIdx);
 }
+
 
 void    insertPend( std::deque<int> &sequence, std::deque<int> &pend, std::list<t_link> &link )
 {
     std::deque<int> jacobstahl;
-    
     initialiseJacobstahlNumbers(jacobstahl);
 
     size_t jacIdx = 0;
     for (jacIdx = 0; jacIdx < jacobstahl.size(); jacIdx++)
     {
-        if (jacobstahl[jacIdx] > pend.size())
+        if ((size_t)jacobstahl[jacIdx] > pend.size())
         {
             jacIdx--;
             break ;
         }
     }
 
+
     for (; jacIdx > 0; jacIdx--)
     {
-        size_t pendIdx = jacobstahl[jacIdx] - 1;
+        int pendIdx = jacobstahl[jacIdx] - 1;
         
         insertNumber(sequence, pend, link, pendIdx);
+    }
+    for (size_t i = 0; i < pend.size(); i++)
+    {
+        insertNumber(sequence, pend, link, i);
     }
 }
 
 int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t pairSize )
 {
-    size_t  sequenceSize = sequence.size();
-    size_t  odd = 0;
     std::deque<int> pend;
     std::list<t_link>   link;
-
-    // std::cout << "RECUSTION LVL " << recursionlvl << std::endl;
 
     // for(size_t i = 0; i < sequence.size(); i++)
     //     std::cout << sequence[i] << " ";
@@ -519,19 +576,26 @@ int sortNumbers( std::deque<int>& sequence, int recursionlvl, size_t pairSize )
 
     if (sequence.size() > 2)
         sortNumbers(sequence, recursionlvl +1, pairSize);
+    
+    std::cout << "RECUSTION LVL " << recursionlvl << std::endl;
+
+    for(size_t i = 0; i < pend.size(); i++)
+        std::cout << pend[i] << " ";
+    std::cout << ": pend" << std::endl;
+
+     for(size_t i = 0; i < sequence.size(); i++)
+        std::cout << sequence[i] << " ";
+    std::cout << ": main before insertion" << std::endl;
 
     insertPend(sequence, pend, link);
 
-    // for(size_t i = 0; i < sequence.size(); i++)
-    //     std::cout << sequence[i] << " ";
-    // std::cout << ": main" << std::endl;
+    for(size_t i = 0; i < sequence.size(); i++)
+        std::cout << sequence[i] << " ";
+    std::cout << ": main" << std::endl;
     
     // for(size_t i = 0; i < pend.size(); i++)
     //     std::cout << pend[i] << " ";
     // std::cout << ": pend" << std::endl;
-
-    // if (sequenceSize > 2)
-    //     sortNumbers( sequence, recursionlvl + 1, pairSize );
 
     
 
@@ -550,10 +614,11 @@ int main(int ac, char **av)
     std::deque<int> sequence;
     int             time;
 
-    std::cout << "Before: ";
-    for (int i = 1; i < ac; i++)
-        std::cout << av[i] << " ";
-    std::cout << std::endl;
+    // std::cout << "Before: ";
+    // for (int i = 1; i < ac; i++)
+    //     std::cout << av[i] << " ";
+    // std::cout << std::endl;
+    (void)time;
 
     for (int i = 1; i < ac; i++)
     {
@@ -568,11 +633,11 @@ int main(int ac, char **av)
 
     time = sortNumbers(sequence, 1, 2);
 
-    // for (size_t i = 0; i < sequence.size(); i++)
-    //     std::cout << sequence[i] << " ";
-    // std::cout << std::endl;
+    for (size_t i = 0; i < sequence.size(); i++)
+        std::cout << sequence[i] << " ";
+    std::cout << std::endl;
 
-    std::cout << time << std::endl;
+    // std::cout << time << std::endl;
 
     return (0);
 }
