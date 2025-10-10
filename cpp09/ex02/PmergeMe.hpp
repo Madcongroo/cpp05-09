@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:10:28 by proton            #+#    #+#             */
-/*   Updated: 2025/10/09 19:47:39 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/10 19:55:19 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <ctime>
+#include <set>
 
 typedef struct s_link
 {

@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/10/09 20:42:37 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/10 19:57:45 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,11 @@ int main(int ac, char **av)
         }
         sequence.push_back(num);
         sequenceVec.push_back(num);
+    }
+    if (std::set<int>(sequenceVec.begin(), sequenceVec.end()).size() != sequenceVec.size())
+    {
+        std::cerr << "No duplicates allowed" << std::endl;
+        return (1);
     }
 
     std::cout << "with std::deque : " << sortNumbers(sequence, 1, 2) << std::endl;
