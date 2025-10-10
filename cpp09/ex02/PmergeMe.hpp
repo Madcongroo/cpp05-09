@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:10:28 by proton            #+#    #+#             */
-/*   Updated: 2025/10/06 12:01:19 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/09 19:47:39 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@
 #include <ctime>
 #include <deque>
 #include <stdlib.h>
+#include <limits.h>
+#include <ctime>
 
 typedef struct s_link
 {
-    int bNumber; // the b number
+    int bNumber;
     int b;
     int a;
 }   t_link;
