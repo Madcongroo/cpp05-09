@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:36 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/12 17:02:58 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/12 14:27:18 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ AForm::AForm( const std::string name, const int sign, const int exec ) : _name(n
 	return ;
 }
 
-AForm::AForm( const AForm& copy ) : _gradeToSign(21), _gradeToExec(42)
+AForm::AForm( const AForm& copy ) : _name(copy._name), _signd(copy._signd), _gradeToSign(copy._gradeToSign), _gradeToExec(copy._gradeToExec)
 {
-	*this = copy;
 	return ;
 }
 

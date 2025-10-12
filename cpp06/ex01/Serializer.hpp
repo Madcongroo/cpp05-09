@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:21:52 by proton            #+#    #+#             */
-/*   Updated: 2025/04/26 01:21:53 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/12 15:00:16 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 class	Serializer
 {
-	protected:
+	private:
 
 		Serializer();
 		Serializer( const Serializer& copy );

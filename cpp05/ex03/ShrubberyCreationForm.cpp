@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:51 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/14 16:11:47 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/12 14:52:09 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : _target("home"), _gradeToSign(145), _gradeToExec(137)
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("Shrubbery Creation Form", 145, 137), _target("home")
 {
 	std::cout << "Base constructor in shrubbery" << std::endl;
 }
-ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm(target, 145, 137), _gradeToSign(145), _gradeToExec(137)
+ShrubberyCreationForm::ShrubberyCreationForm( std::string target ) : AForm("Shrubbery Creation Form", 145, 137), _target(target)
 {
 	std::cout << "in direct assignation constructor shrubbery" << std::endl;
 	return ;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& copy ) : AForm(), _gradeToSign(145), _gradeToExec(137)
+ShrubberyCreationForm::ShrubberyCreationForm( const ShrubberyCreationForm& copy ) : AForm(copy), _target(copy._target)
 {
 	std::cout << "in copy constructor of class shrubbery" << std::endl;
 	*this = copy;

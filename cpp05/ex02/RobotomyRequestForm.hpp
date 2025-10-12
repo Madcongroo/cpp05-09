@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:49 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/11 17:52:51 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/12 14:41:07 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ class   RobotomyRequestForm : public AForm
 	private:
 	
 		std::string	_target;
-		const int	_gradeToSign;
-		const int	_gradeToExec;
 
 	public:
 

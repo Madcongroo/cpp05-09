@@ -6,24 +6,24 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:46 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/13 11:17:23 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/12 14:52:21 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include <stdlib.h>
 
-RobotomyRequestForm::RobotomyRequestForm() : _target("someone"), _gradeToSign(72), _gradeToExec(45)
+RobotomyRequestForm::RobotomyRequestForm() : AForm("Robotomy Request Form", 72, 45), _target("someone")
 {
 	std::cout << "in base constructor robotomy" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( std::string target ) : AForm( target, 72, 45), _gradeToSign(72), _gradeToExec(45)
+RobotomyRequestForm::RobotomyRequestForm( std::string target ) : AForm( "Robotomy Request Form", 72, 45), _target(target)
 {
     std::cout << "in direct assignation constructor robotomy" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm& copy ) : AForm(), _gradeToSign(72), _gradeToExec(45)
+RobotomyRequestForm::RobotomyRequestForm( const RobotomyRequestForm& copy ) : AForm(copy), _target(copy._target)
 {
     std::cout << "in copy constructor of robotomy" << std::endl;
     *this = copy;
@@ -53,7 +53,7 @@ void	RobotomyRequestForm::execute( Bureaucrat const & executor ) const
 
 	std::cout << "Some drilling noises" << std::endl;
 	
-	srand(time(NULL)); // to generate the seed for rand() function
+	srand(time(NULL));
 	int random_num = rand();
 	if (random_num % 2 == 1)
 		std::cout << this->getName() << " has been robotomized" << std::endl;

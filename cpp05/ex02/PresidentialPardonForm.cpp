@@ -6,23 +6,23 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:28:41 by bproton           #+#    #+#             */
-/*   Updated: 2025/04/13 11:22:45 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/12 14:47:24 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm(), _target("someone"), _gradeToSign(25), _gradeToExec(5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Pardon Form", 25, 5), _target("someone")
 {
 	std::cout << "in base constructor for class presidentail form" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm( target, 25, 5), _gradeToSign(25), _gradeToExec(5)
+PresidentialPardonForm::PresidentialPardonForm( std::string target ) : AForm( "Presidential Pardon Form", 25, 5), _target(target)
 {
 	std::cout << "in direct assignation constructor of class presidential form" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm& copy ) : AForm(), _gradeToSign(25), _gradeToExec(5)
+PresidentialPardonForm::PresidentialPardonForm( const PresidentialPardonForm& copy ) : AForm(copy), _target(copy._target)
 {
 	std::cout << "in copy constructor of class presidential form" << std::endl;
 	*this = copy;

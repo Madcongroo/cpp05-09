@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:56 by proton            #+#    #+#             */
-/*   Updated: 2025/09/24 13:11:30 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/12 14:24:02 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ Bureaucrat::Bureaucrat( std::string name, int grade ) : _name(name)
 	return ;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& copy )
+Bureaucrat::Bureaucrat(const Bureaucrat& copy ) : _name(copy._name), _grade(copy._grade)
 {
 	std::cout << "copy constructor BUREAUCRAT called" << std::endl;
-
-	*this = copy;
 
 	return ;
 }

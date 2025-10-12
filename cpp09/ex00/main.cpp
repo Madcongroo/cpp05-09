@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:10:05 by proton            #+#    #+#             */
-/*   Updated: 2025/05/08 14:10:27 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/12 15:07:47 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 enum isValid	parseYearMonthDay( int year, int month, int day, Btc& dataBase, std::string date )
 {
-	//std::cout << "year = " << year << std::endl;
-	//std::cout << "month = " << month << std::endl;
-	//std::cout << "day = " << day << std::endl;
 	if (year == 0 || month == 0 || day == 0)
 	{
 		dataBase.printValues("Error, date is wrong => " + date, NONVALID);
