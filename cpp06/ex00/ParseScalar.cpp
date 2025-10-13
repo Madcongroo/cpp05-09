@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ParseScalar.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:11:45 by proton            #+#    #+#             */
-/*   Updated: 2025/10/12 14:56:25 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/13 15:52:22 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,32 @@ int isInt(int num)
     return 0;
 }
 
-int isFloat(long double num, int precision)
+int isFloat(long double num, int precision, const std::string &input)
 {
-    std::cout << "char   : Non displayable" << std::endl;
-    std::cout << "int    : " << static_cast<int>(num) << std::endl;
+    if (num >= 32 && num <= 126)
+        std::cout << "char   : '" << static_cast<char>(num) << "'" << std::endl;
+    else
+        std::cout << "char   : Non displayable" << std::endl;
+    if (input == "-inff" || input == "inff" || input == "+inff" || input == "-nanf" || input == "+nanf" || input == "nanf")
+        std::cout << "int   : Impossible" << std::endl;
+    else
+        std::cout << "int    : " << static_cast<int>(num) << std::endl;
     std::cout << std::fixed << std::setprecision(precision);
     std::cout << "float  : " << static_cast<float>(num) << "f" << std::endl;
     std::cout << "double : " << static_cast<double>(num) << std::endl;
     return 0;
 }
 
-int isDouble(long double num, int precision)
+int isDouble(long double num, int precision, const std::string &input)
 {
-    std::cout << "char   : Non displayable" << std::endl;
-    std::cout << "int    : " << static_cast<int>(num) << std::endl;
+    if (num >= 32 && num <= 126)
+        std::cout << "char   : '" << static_cast<char>(num) << "'" << std::endl;
+    else
+        std::cout << "char   : Non displayable" << std::endl;
+    if (input == "inf" || input == "+inf" || input == "nan" || input == "+nan" || input == "-nan" || input == "-inf")
+        std::cout << "int   : Impossible" << std::endl;
+    else
+        std::cout << "int    : " << static_cast<int>(num) << std::endl;
     std::cout << std::fixed << std::setprecision(precision);
     std::cout << "float  : " << static_cast<float>(num) << "f" << std::endl;
     std::cout << "double : " << static_cast<double>(num) << std::endl;
@@ -96,11 +108,12 @@ int checkIfInt(const std::string &input)
 
 int parseInput(const std::string &input)
 {
-    if (input == "inff" || input == "-inff" || input == "+inff" || input == "nanf")
-        return ISFLOAT;
-
-    if (input == "inf" || input == "-inf" || input == "+inf" || input == "nan")
+    long double value = atof(input.c_str());
+    if (input == "inf" || input == "+inf" || input == "nan" || input == "+nan" || input == "-nan" || input == "-inf")
         return ISDOUBLE;
+
+    else if (input == "-inff" || input == "inff" || input == "+inff" || input == "-nanf" || input == "+nanf" || input == "nanf")
+        return ISFLOAT;
 
     if (input.length() == 1 && !isdigit(input[0]))
         return ISCHAR;
@@ -108,7 +121,7 @@ int parseInput(const std::string &input)
     if (checkIfInt(input))
         return ISINT;
 
-    if (input.find('.') != std::string::npos && input[input.size()-1] == 'f')
+    if ((input.find('.') != std::string::npos && input[input.size()-1] == 'f') || (value > FLT_MIN && value < FLT_MAX))
         return ISFLOAT;
 
     if (input.find('.') != std::string::npos)
@@ -131,10 +144,10 @@ void dispatchInput(const std::string &input, int returnedValue)
             isInt(atoi(input.c_str()));
             break;
         case ISFLOAT:
-            isFloat(value, precision);
+            isFloat(value, precision, input);
             break;
         case ISDOUBLE:
-            isDouble(value, precision);
+            isDouble(value, precision, input);
             break;
         default:
             nonDisplayable();
