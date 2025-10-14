@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 22:44:44 by proton            #+#    #+#             */
-/*   Updated: 2025/04/29 15:21:42 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/14 10:04:04 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include <cstdlib>
+#include <vector>
 
 template <class T>
 class Array
 {
 	private:
 
-		T*	array_;
+		T*		array_;
 		size_t	size_;
 
 	public:
@@ -33,9 +35,9 @@ class Array
 		Array& operator=( const Array& copy );
 		~Array();
 
-		T	size() const;
-		T&	operator[]( int pos );
-		void	modifyArray( T pos, T newValue );
+		unsigned int	size() const;
+		T&	operator[]( unsigned int pos );
+		void modifyArray( unsigned int pos, const T &newValue );
 
 		class OutOfBoundException : public std::exception
 		{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.cpp                                          :+:      :+:    :+:   */
+/*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 00:59:30 by proton            #+#    #+#             */
-/*   Updated: 2025/04/29 15:54:50 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/14 10:19:54 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ template <class T>
 Array<T>::Array( unsigned int n )
 {
 	std::cout << "in direct assignation of class template Array" << std::endl;
-	if (n <= 0)
-		throw (std::exception());
 	size_ = n;
 	array_ = new T[n];
 
@@ -33,7 +31,10 @@ template <class T>
 Array<T>::Array( const Array& copy )
 {
 	std::cout << "in copy constructor of array class" << std::endl;
-	*this = copy;
+	this->size_ = copy.size_;
+	this->array_ = new T[this->size_];
+	for (unsigned int i = 0; i < this->size_; i++)
+		this->array_[i] = copy.array_[i];
 }
 
 template <class T>
@@ -61,24 +62,24 @@ Array<T>::~Array()
 }
 
 template <class T>
-T Array<T>::size() const
+unsigned int Array<T>::size() const
 {
 	return (this->size_);	
 }
 
 template <class T>
-void Array<T>::modifyArray( T pos, T newValue )
+void Array<T>::modifyArray( unsigned int pos, const T &newValue )
 {
-	if (pos >= this->size_ || pos < 0)
+	if (pos >= this->size_)
 		throw (OutOfBoundException());
 	
 	this->array_[pos] = newValue;
 }
 
 template <class T>
-T& Array<T>::operator[]( int pos )
+T& Array<T>::operator[]( unsigned int pos )
 {
-	if ((size_t)pos >= this->size_ || pos < 0)
+	if (pos >= this->size_)
 		throw (OutOfBoundException());
 
 	return (this->array_[pos]);
@@ -87,7 +88,7 @@ T& Array<T>::operator[]( int pos )
 template <class T>
 const char* Array<T>::OutOfBoundException::what() const throw()
 {
-	return ("Out of bound");
+	return ("Out of bound access");
 }
 
 

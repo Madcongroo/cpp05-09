@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:20:54 by proton            #+#    #+#             */
-/*   Updated: 2025/04/26 01:20:55 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/13 19:27:24 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	identify( Base* p )
 	else
 	{
 		std::cout << "Class is of type A" << std::endl;
-		delete p;
 		return ;
 	}
 	if (dynamic_cast<B*>(p) == NULL)
@@ -56,7 +55,6 @@ void	identify( Base* p )
 	else
 	{
 		std::cout << "Class is of type B" << std::endl;
-		delete p;
 		return ;
 	}
 	if (dynamic_cast<C*>(p) == NULL)
@@ -64,14 +62,13 @@ void	identify( Base* p )
 	else
 	{
 		std::cout << "Class is of type C" << std::endl;
-		delete p;
 		return ;
 	}
 }
 
 void	identify( Base& p )
 {
-	{
+
 		try{
 			A test = dynamic_cast<A&>(p);
 			std::cout << "Class is of type A in identify function of reference" << std::endl;
@@ -79,8 +76,7 @@ void	identify( Base& p )
 		catch (std::exception& e)
 		{
 		}
-	}
-	{
+
 		try{
 			B test = dynamic_cast<B&>(p);
 			std::cout << "Class is of type B in identify function of reference" << std::endl;
@@ -88,8 +84,6 @@ void	identify( Base& p )
 		catch (std::exception& e)
 		{
 		}
-	}
-	{
 		try{
 			C test = dynamic_cast<C&>(p);
 			std::cout << "Class is of type C in identify function of reference" << std::endl;
@@ -97,22 +91,22 @@ void	identify( Base& p )
 		catch (std::exception& e)
 		{
 		}
-	}
+	
 }
 
 int main()
 {
-	{
-		Base* test;
+	std::cout << "TEST PTR" << std::endl;
+	Base* test;
 
-		test = generate();
-		identify( test );
-	}
+	test = generate();
+	identify( test );
 
 	Base* test2;
-	
+	std::cout << "TEST REF" << std::endl;
 	test2 = generate();
-	identify(*test2);	
+	identify(*test2);
+	delete test2;
 
 	return (0);	
 }

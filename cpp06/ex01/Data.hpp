@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:21:24 by proton            #+#    #+#             */
-/*   Updated: 2025/04/26 01:21:26 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/13 17:07:41 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ class	Data
 {
 	private:	
 		
-		int		age_;
-		std::string	name_;
+		int			_age;
+		std::string	_name;
 
 	public:
 

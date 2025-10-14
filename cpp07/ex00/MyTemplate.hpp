@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:   */
+/*   MyTemplate.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:18:12 by proton            #+#    #+#             */
-/*   Updated: 2025/04/27 15:57:47 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/13 19:32:29 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void swap(T& a, T& b)
 }
 
 template <typename T>
-T min(T a, T b)
+T min(T &a, T &b)
 {
 	if (a < b)
 		return (a);
@@ -35,7 +35,7 @@ T min(T a, T b)
 }
 
 template <typename T>
-T max(T a, T b)
+T max(T &a, T &b)
 {
 	if (a > b)
 		return (a);

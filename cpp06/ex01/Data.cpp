@@ -6,19 +6,19 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:21:18 by proton            #+#    #+#             */
-/*   Updated: 2025/04/26 01:21:20 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/13 17:08:09 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Data.hpp"
 
 
-Data::Data()
+Data::Data() : _age(0), _name("noname")
 {
 	std::cout << "in data base constructor" << std::endl;
 }
 
-Data::Data( int age, std::string name ) : age_(age), name_(name)
+Data::Data( int age, std::string name ) : _age(age), _name(name)
 {
 	std::cout << "in direct assignation data class" << std::endl;
 }
@@ -34,8 +34,8 @@ Data& Data::operator=( const Data& copy )
 	std::cout << "in copy operator of class data" << std::endl;
 	if (this != &copy)
 	{
-		this->age_ = copy.age_;
-		this->name_ = copy.name_;
+		this->_age = copy._age;
+		this->_name = copy._name;
 	}
 	return (*this);
 }
@@ -47,11 +47,11 @@ Data::~Data()
 
 int		Data::getAge()
 {
-	return (this->age_);
+	return (this->_age);
 }
 
 std::string	Data::getName()
 {
-	return (this->name_);
+	return (this->_name);
 }
 

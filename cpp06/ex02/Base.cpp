@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 01:20:26 by proton            #+#    #+#             */
-/*   Updated: 2025/04/26 01:20:30 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/13 17:38:44 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 Base::~Base()
 {
-	std::cout << "in Base desetructor" << std::endl;
+	std::cout << "in Base destructor" << std::endl;
 }

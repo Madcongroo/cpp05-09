@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ParseScalar.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:11:45 by proton            #+#    #+#             */
-/*   Updated: 2025/10/13 15:52:22 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/13 16:49:54 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int isFloat(long double num, int precision, const std::string &input)
         std::cout << "char   : '" << static_cast<char>(num) << "'" << std::endl;
     else
         std::cout << "char   : Non displayable" << std::endl;
-    if (input == "-inff" || input == "inff" || input == "+inff" || input == "-nanf" || input == "+nanf" || input == "nanf")
+    if (input == "-inff" || input == "inff" || input == "+inff" || input == "-nanf" || input == "+nanf" || input == "nanf" || (num < INT_MIN || num > INT_MAX))
         std::cout << "int   : Impossible" << std::endl;
     else
         std::cout << "int    : " << static_cast<int>(num) << std::endl;
@@ -84,7 +84,7 @@ int isDouble(long double num, int precision, const std::string &input)
         std::cout << "char   : '" << static_cast<char>(num) << "'" << std::endl;
     else
         std::cout << "char   : Non displayable" << std::endl;
-    if (input == "inf" || input == "+inf" || input == "nan" || input == "+nan" || input == "-nan" || input == "-inf")
+    if (input == "inf" || input == "+inf" || input == "nan" || input == "+nan" || input == "-nan" || input == "-inf" || (num < INT_MIN || num > INT_MAX))
         std::cout << "int   : Impossible" << std::endl;
     else
         std::cout << "int    : " << static_cast<int>(num) << std::endl;
@@ -124,7 +124,7 @@ int parseInput(const std::string &input)
     if ((input.find('.') != std::string::npos && input[input.size()-1] == 'f') || (value > FLT_MIN && value < FLT_MAX))
         return ISFLOAT;
 
-    if (input.find('.') != std::string::npos)
+    if (input.find('.') != std::string::npos || (value > DBL_MIN && value < DBL_MAX))
         return ISDOUBLE;
 
     return ISBAD;
