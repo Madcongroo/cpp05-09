@@ -6,13 +6,13 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:53:55 by proton            #+#    #+#             */
-/*   Updated: 2025/05/02 10:41:00 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/15 10:26:06 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-Span::Span()
+Span::Span() : maxNumbers_(30)
 {
 	std::cout << "in Span default constructor" << std::endl;
 }
@@ -31,8 +31,11 @@ Span::Span( const Span& copy )
 Span& Span::operator=( const Span& copy )
 {
 	std::cout << "in Span copy assignator" << std::endl;
-	if (this == &copy)
-		return (*this);
+	if (this != &copy)
+	{
+		this->maxNumbers_ = copy.maxNumbers_;
+		this->container_ = copy.container_;
+	}
 	return (*this);
 }
 
@@ -76,10 +79,8 @@ unsigned int	Span::longestSpan()
 	if (this->container_.size() <= 1)
 		throw (SpanException("Not enough composants on the list"));
 
-	std::set<unsigned int>::iterator itStart = this->container_.begin();
-	std::set<unsigned int>::reverse_iterator itEnd = this->container_.rbegin();
-
-	return (*itEnd - *itStart);
+	return (*std::min_element(this->container_.begin(), this->container_.end()) - 
+			*std::max_element(this->container_.begin(), this->container_.end()));
 }
 
 Span::SpanException::SpanException()
