@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:38:49 by proton            #+#    #+#             */
-/*   Updated: 2025/05/07 18:05:03 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/15 15:18:48 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <deque>
 #include <stack>
+#include <list>
 
 template<typename T, class Container = std::deque<T> >
 class	MutantStack : public std::stack<T>

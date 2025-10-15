@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:27:20 by proton            #+#    #+#             */
-/*   Updated: 2025/10/15 10:26:33 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/15 15:28:02 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ class	Span
 
 		void		addNumber( unsigned int n );
 
-		template<typename T>
-		void		addMultipleNumbers(T first, T last );
+		void		addMultipleNumbers(std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last );
 
 		unsigned int	shortestSpan();
 		unsigned int	longestSpan();
@@ -56,14 +55,5 @@ class	Span
 			virtual const char* what() const throw();
 	};
 };
-
-template<typename T>
-void	Span::addMultipleNumbers( T first, T last )
-{
-	if (*last > this->maxNumbers_)
-		throw (SpanException("Range too high"));
-
-	this->container_.insert(first, last);
-}
 
 #endif

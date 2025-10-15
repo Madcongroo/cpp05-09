@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 01:03:34 by proton            #+#    #+#             */
-/*   Updated: 2025/05/02 10:08:38 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/15 15:55:27 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,17 @@
 int main()
 {
 	try {
-		Span sp = Span(15000);
+		//////////////////////// main subject
+		Span spa = Span(5);
+		spa.addNumber(6);
+		spa.addNumber(3);
+		spa.addNumber(17);
+		spa.addNumber(9);
+		spa.addNumber(11);
+		std::cout << spa.shortestSpan() << std::endl;
+		std::cout << spa.longestSpan() << std::endl;
+		std::cout << "end of subject main" << std::endl;
+		Span sp = Span(150000);
 		std::set<unsigned int> number;
 		std::srand(std::time(NULL));
 		
@@ -26,7 +36,7 @@ int main()
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
 
-		for (size_t i = 0; i < 16000; i++)
+		for (size_t i = 0; i < 1600; i++)
 			number.insert(std::rand());
 
 		sp.addMultipleNumbers(number.begin(), number.end());	

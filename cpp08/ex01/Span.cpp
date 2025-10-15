@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:53:55 by proton            #+#    #+#             */
-/*   Updated: 2025/10/15 10:26:06 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/15 15:49:22 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ unsigned int	Span::shortestSpan()
 	itSecond++;
 
 	if (this->container_.size() <= 1)
-		throw (SpanException("Not enough composants on the list"));	
-	
+		throw (SpanException("Not enough composants on the list"));
+
 	while (itSecond != itEnd)
 	{
 		shortSpan = *itSecond - *itFirst;
@@ -81,6 +81,14 @@ unsigned int	Span::longestSpan()
 
 	return (*std::min_element(this->container_.begin(), this->container_.end()) - 
 			*std::max_element(this->container_.begin(), this->container_.end()));
+}
+
+void	Span::addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last )
+{
+	if (*last > this->maxNumbers_)
+		throw (SpanException("Range too high"));
+
+	this->container_.insert(first, last);
 }
 
 Span::SpanException::SpanException()
