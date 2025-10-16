@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 17:30:21 by proton            #+#    #+#             */
-/*   Updated: 2025/10/14 11:57:12 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/16 10:52:18 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <list>
 #include <exception>
 #include <iterator>
+#include <vector>
+#include <deque>
 
 class NoOccurenceFoundException : public std::exception
 {

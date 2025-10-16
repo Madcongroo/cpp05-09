@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 17:09:26 by proton            #+#    #+#             */
-/*   Updated: 2025/10/15 15:23:02 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/16 06:51:39 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int main()
 		s.push(12);
 		s.push(234);
 		std::cout << "stack s size : " << s.size() << std::endl;
+
+		std::stack<int> copy(mstack);
+		std::cout << "stack top : " << copy.top() << std::endl;
+		std::cout << "stack size : " << copy.size() << std::endl;
 	}
 
 	std::cout << "OTHER TEST WITH STD::LIST >>>>>>>>>>>>>>>>>>>>>>>>>>>>" << std::endl;
@@ -78,6 +82,23 @@ int main()
 		s.push_back(12);
 		s.push_back(234);
 		std::cout << "stack s size : " << s.size() << std::endl;
+	}
+	{
+		MutantStack<int> mstack;
+		mstack.push(1);
+		mstack.push(5);
+		mstack.push(3);
+		mstack.push(7);
+
+		MutantStack<int>::const_iterator it = mstack.begin();
+		MutantStack<int>::const_iterator ite = mstack.end();
+		++it;
+		--it;
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
 	}
 	return 0;
 

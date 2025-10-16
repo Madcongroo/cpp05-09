@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 10:57:53 by proton            #+#    #+#             */
-/*   Updated: 2025/10/14 13:50:22 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/14 16:51:18 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main()
 	"\n\ta[2]: " << a[2] <<
 	std::endl << std::endl;
 
-	::iter(a, sizeof(a) / sizeof(char), ft_tolower);
+	::iter(a, 3, ft_tolower);
 
 	std::cout << "Changed:" <<
 	"\n\ta[0]: " << a[0] <<

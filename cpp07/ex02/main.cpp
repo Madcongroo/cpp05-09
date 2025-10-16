@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:11:29 by proton            #+#    #+#             */
-/*   Updated: 2025/10/14 10:22:46 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/14 17:55:16 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int main()
 	{
 		std::cout << e.what() << std::endl;
 	}
+
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));

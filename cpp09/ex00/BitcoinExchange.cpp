@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:09:39 by proton            #+#    #+#             */
-/*   Updated: 2025/05/08 14:10:39 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/16 10:21:13 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,12 @@ void	Btc::printValues( std::string value, enum isValid flag )
 	if (this->_dataBase.find(date) == this->_dataBase.end())
 	{
 		lowerBoundIt = this->_dataBase.lower_bound(date);
-		std::cout << lowerBoundIt->first << " => " << lowerBoundIt->second << " = " << lowerBoundIt->second * BtcNumber << std::endl;
+		if (lowerBoundIt != this->_dataBase.begin())
+			lowerBoundIt--;
+		std::cout << lowerBoundIt->first << " => " << BtcNumber << " = " << lowerBoundIt->second * BtcNumber << std::endl;
 		return ;
 	}
-	std::cout << search->first << " => " << search->second << " = " << search->second * BtcNumber << std::endl;
+	std::cout << search->first << " => " << BtcNumber << " = " << std::fixed << std::setprecision(2) << search->second * BtcNumber << std::endl;
 	return ;
 }
 

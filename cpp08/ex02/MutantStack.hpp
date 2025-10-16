@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 16:38:49 by proton            #+#    #+#             */
-/*   Updated: 2025/10/15 15:18:48 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/15 23:08:51 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <stack>
 #include <list>
 
-template<typename T, class Container = std::deque<T> >
+template<typename T>
 class	MutantStack : public std::stack<T>
 {
 	public:
@@ -29,9 +29,14 @@ class	MutantStack : public std::stack<T>
 	MutantStack& operator=( const MutantStack& copy );
 	~MutantStack();
 
-	typedef typename Container::iterator iterator;
+	typedef typename std::stack<T>::container_type::iterator iterator;
+	typedef typename std::stack<T>::container_type::iterator const_iterator;
+
 	iterator	begin() { return (this->c.begin()); }
 	iterator	end() { return (this->c.end()); }
+	
+	const_iterator	begin() const { return (this->c.begin()); }
+	const_iterator	end() const { return (this->c.end()); }
 };
 
 #include "MutantStack.tpp"

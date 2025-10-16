@@ -6,7 +6,7 @@
 #    By: proton <proton@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/01 14:13:19 by proton            #+#    #+#              #
-#    Updated: 2025/05/01 14:13:39 by proton           ###   ########.fr        #
+#    Updated: 2025/10/16 10:40:21 by proton           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,6 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: all
+re: fclean all
 
 .PHONY: all re

@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:07:34 by proton            #+#    #+#             */
-/*   Updated: 2025/05/08 14:09:33 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/16 10:11:42 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <cstdlib>
 #include <utility>
 #include <sstream>
+#include <iomanip>
 
 enum	isValid
 {

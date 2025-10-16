@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:10:05 by proton            #+#    #+#             */
-/*   Updated: 2025/10/12 15:07:47 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/16 10:25:24 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 	int	day = 0;
 
 	delimiter = date.find('-');
+	if (delimiter == -1)
+		return (NONVALID);
 	year = std::atoi(date.substr(0, delimiter).c_str());
 	
 	pos = delimiter + 1;
@@ -78,16 +80,16 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 	return (VALID);
 }
 
-enum isValid	parseValue( std::string line, float value, Btc& dataBase )
+enum isValid	parseValue( float value, Btc& dataBase )
 {
 	if (value < 1)
 	{
-		dataBase.printValues("Error, value under 1 => " + line, NONVALID);
+		dataBase.printValues("Error: not a positive number", NONVALID);
 		return (NONVALID);
 	}
 	else if (value > 1000)
 	{
-		dataBase.printValues("Error, value over 1000 => " + line, NONVALID);
+		dataBase.printValues("Error: too large number", NONVALID);
 		return (NONVALID);
 	}
 	return (VALID);
@@ -132,7 +134,7 @@ void	parseUserInput(std::ifstream& file)
 			if (parseDate(newLine, dataBase) == NONVALID)
 				continue ;
 			value = std::atof(line.substr(delim + 1, line.length()).c_str());
-			if (parseValue(line.substr(delim + 1, line.length()), value, dataBase) == NONVALID)
+			if (parseValue( value, dataBase) == NONVALID)
 				continue ;
 			newValue << value;
 			dataBase.printValues(newLine + '|' + newValue.str(), VALID);
@@ -154,7 +156,9 @@ int	main( int ac, char **av )
 		std::cerr << "Error, user input file failed to open" << std::endl;
 		return (1);
 	}
-	parseUserInput(file);	
+	parseUserInput(file);
+
+	file.close();
 	
 	return (0);
 }

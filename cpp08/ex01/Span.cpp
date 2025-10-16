@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:53:55 by proton            #+#    #+#             */
-/*   Updated: 2025/10/15 15:49:22 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/16 11:03:34 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ unsigned int	Span::longestSpan()
 	if (this->container_.size() <= 1)
 		throw (SpanException("Not enough composants on the list"));
 
-	return (*std::min_element(this->container_.begin(), this->container_.end()) - 
-			*std::max_element(this->container_.begin(), this->container_.end()));
+	return (*std::max_element(this->container_.begin(), this->container_.end()) - *std::min_element(this->container_.begin(), this->container_.end()));
 }
 
 void	Span::addMultipleNumbers( std::set<unsigned int>::iterator first, std::set<unsigned int>::iterator last )
 {
-	if (*last > this->maxNumbers_)
+	if (first == last)
+		throw (SpanException("Empty range"));
+	else if (*last > this->maxNumbers_ || this->container_.size() + std::distance(first, last) > this->maxNumbers_)
 		throw (SpanException("Range too high"));
-
 	this->container_.insert(first, last);
 }
 
