@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:09:09 by proton            #+#    #+#             */
-/*   Updated: 2025/09/23 17:08:12 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 13:40:35 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,29 @@ Rpn::~Rpn()
 int	Rpn::processCalculation( std::string& userInput )
 {
 	std::string			token;
-	std::stringstream	sstream;
 	std::stack<int>		stack;
+	size_t				i = 0;
 	int					value1 = 0;
 	int					value2 = 0;
 	int					result = 0;
 
-	sstream << userInput;
-
-	while (sstream >> token)
+	while (i < userInput.size())
 	{
+		token = userInput[i];
+		if (userInput[i] == ' ')
+		{
+			i++;
+			continue ;
+		}
 		if (token != "+" && token != "-" && token != "*" && token != "/")
 			stack.push(std::atoi(token.c_str()));
 		else
 		{
+			if (stack.size() != 2)
+			{
+				std::cout << "Error" << std::endl;
+				exit(EXIT_FAILURE);
+			}
 			if (token == "*")
 			{
 				value2 = stack.top();
@@ -84,6 +93,12 @@ int	Rpn::processCalculation( std::string& userInput )
 			}
 			stack.push(result);
 		}
+		i++;
+	}
+	if (stack.size() > 1)
+	{
+		std::cerr << "Error" << std::endl;
+		exit(EXIT_FAILURE);
 	}
 	return (result);
 }

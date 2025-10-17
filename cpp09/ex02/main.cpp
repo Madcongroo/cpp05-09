@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/10/10 19:57:45 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 15:13:15 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,7 @@ double sortNumbers( Container &sequence, int recursionlvl, size_t pairSize )
     std::list<t_link>   link;
     std::clock_t start = std::clock();
     
-
     separatePairs(sequence, pend, link);
-
 
     if (sequence.size() >= 2)
         sortNumbers(sequence, recursionlvl +1, pairSize);
@@ -145,7 +143,7 @@ double sortNumbers( Container &sequence, int recursionlvl, size_t pairSize )
 
     std::clock_t end = std::clock();
 
-    double elapsed = double(end - start) / CLOCKS_PER_SEC;
+    double elapsed =  1000.0 * double(end - start) / CLOCKS_PER_SEC;
 
     return (elapsed);
 }
@@ -159,13 +157,25 @@ int main(int ac, char **av)
         return (1);
     }
 
+    std::stringstream ss;
+    std::string test;
     std::deque<int> sequence;
-
     std::vector<int> sequenceVec;
+    double          vect;
+    double          dequ;
 
     for (int i = 1; i < ac; i++)
     {
-        int num = std::atoi(av[i]);
+        test = av[i];
+        int num;
+        ss.clear();
+        ss << test;
+        ss >> num;
+        if (!ss.eof())
+        {
+            std::cerr << "Error, incorrect input" << std::endl;
+            return (-1);
+        }
         if (num < 0)
         {
             std::cerr << "Error, a number is negative" << std::endl;
@@ -179,18 +189,22 @@ int main(int ac, char **av)
         std::cerr << "No duplicates allowed" << std::endl;
         return (1);
     }
-
-    std::cout << "with std::deque : " << sortNumbers(sequence, 1, 2) << std::endl;
-
-    std::cout << "with std::vector : " << sortNumbers(sequenceVec, 1, 2) << std::endl;
-
+    
+    std::cout << "before : ";
     for (size_t i = 0; i < sequence.size(); i++)
         std::cout << sequence[i] << " ";
-    std::cout << std::endl;
+    std::cout << std::endl << std::endl;
 
+    vect = sortNumbers(sequenceVec, 1, 2);
+    dequ = sortNumbers(sequence, 1, 2);
+
+    std::cout << "after : ";
     for (size_t i = 0; i < sequence.size(); i++)
-        std::cout << sequenceVec[i] << " ";
-    std::cout << std::endl;
+        std::cout << sequence[i] << " ";
+    std::cout << std::endl << std::endl;
 
+    std::cout << "Time to process a range of " << sequence.size() << " elements with std::deque : " << dequ << std::endl;
+    std::cout << "Time to process a range of " << sequenceVec.size() << " elements with std::vector : " << vect << std::endl;
+    
     return (0);
 }

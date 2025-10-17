@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:51 by proton            #+#    #+#             */
-/*   Updated: 2025/09/23 17:05:51 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 13:23:06 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 int firstInputParsing( std::string& userInput )
 {
-	std::stringstream	ss;
-	std::string			token;
-	int					num;
-	ss << userInput;
+	std::string token;
+	int		num;
+	size_t	i = 0;
 
-	while (ss >> token)
+	while (i < userInput.size())
 	{
+		token = userInput[i];
+		if (userInput[i] == ' ')
+		{
+			i++;
+			continue ;
+		}
+
 		if (token != "+" && token != "-" && token != "*" && token != "/")
 		{
-			num = std::atoi(token.c_str());
+			num = atoi(token.c_str());
 			if (num == 0)
 			{
 				std::cerr << "Error" << std::endl;
@@ -35,6 +41,7 @@ int firstInputParsing( std::string& userInput )
 				exit (1);
 			}
 		}
+		i++;
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:10:05 by proton            #+#    #+#             */
-/*   Updated: 2025/10/17 10:41:16 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 11:48:31 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ std::string	trimLine( std::string& line )
 	size_t		j = 0;
 	std::string	newLine;
 
-	i = line.find_first_not_of(" \t");	
+	i = line.find_first_not_of(" \t");
 	j = line.find_last_not_of(" \t");
 
 	newLine = line.substr(i, j + 1);
@@ -114,14 +114,18 @@ std::string	trimLine( std::string& line )
 
 int	ft_isDigit( std::string str )
 {
-	for (size_t i = 0; i < str.length(); i++)
+	std::stringstream ss;
+
+	ss.str(str);
+	float	test = 0;
+	
+	ss >> test;
+	if (!ss.eof())
 	{
-		if (str[i] < 48 || str[i] > 57)
-		{
-			std::cout << "Error: digit wrong format" << std::endl;
-			return (-1);
-		}
+		std::cout << "Error: number wrong format" << std::endl;
+		return (-1);
 	}
+
 	return (0);
 }
 
