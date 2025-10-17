@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:53:55 by proton            #+#    #+#             */
-/*   Updated: 2025/10/16 11:03:34 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 10:25:44 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ void	Span::addNumber( unsigned int n )
 
 unsigned int	Span::shortestSpan()
 {
+	if (this->container_.size() <= 1)
+		throw (SpanException("Not enough composants on the list"));
+
 	unsigned int	shortSpan = -1;
 	unsigned int	savedSpan = UINT_MAX;
 	std::set<unsigned int>::iterator itFirst = this->container_.begin();
 	std::set<unsigned int>::iterator itSecond = this->container_.begin();
 	std::set<unsigned int>::iterator itEnd = this->container_.end();
 	itSecond++;
-
-	if (this->container_.size() <= 1)
-		throw (SpanException("Not enough composants on the list"));
 
 	while (itSecond != itEnd)
 	{
