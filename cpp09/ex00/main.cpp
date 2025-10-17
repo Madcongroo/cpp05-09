@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:10:05 by proton            #+#    #+#             */
-/*   Updated: 2025/10/16 10:25:24 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 10:41:16 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,17 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 		return (NONVALID);
 	
 	int	pos = 0;
-	int	delimiter = 0;
+	std::string::size_type	delimiter = 0;
 	int	year = 0;
 	int	month = 0;
 	int	day = 0;
 
 	delimiter = date.find('-');
-	if (delimiter == -1)
+	if (delimiter == std::string::npos)
+	{
+		dataBase.printValues("Error, bad date format => " + date, NONVALID);
 		return (NONVALID);
+	}
 	year = std::atoi(date.substr(0, delimiter).c_str());
 	
 	pos = delimiter + 1;
@@ -82,7 +85,7 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 
 enum isValid	parseValue( float value, Btc& dataBase )
 {
-	if (value < 1)
+	if (value < 0)
 	{
 		dataBase.printValues("Error: not a positive number", NONVALID);
 		return (NONVALID);
@@ -109,6 +112,19 @@ std::string	trimLine( std::string& line )
 	return (newLine);
 }
 
+int	ft_isDigit( std::string str )
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (str[i] < 48 || str[i] > 57)
+		{
+			std::cout << "Error: digit wrong format" << std::endl;
+			return (-1);
+		}
+	}
+	return (0);
+}
+
 void	parseUserInput(std::ifstream& file)
 {
 	Btc			dataBase;
@@ -118,20 +134,33 @@ void	parseUserInput(std::ifstream& file)
 	float			value;
 	std::string		newLine;
 	std::ostringstream	newValue;
+	size_t			loopRound = 0;
 
 	while (std::getline(file, line))
 	{
+		if (loopRound == 0 && line.find("date") != std::string::npos)
+		{
+			loopRound++;
+			continue ;
+		}
+		if (line.empty())
+		{
+			std::cout << "Error: empty line" << std::endl;
+			continue;
+		}
 		value = 0;
 		newValue.str("");
 		newValue.clear();
 		delim = line.find('|');
 		if (delim == -1)
-			dataBase.printValues("Date and value not separated with '|'", NONVALID);
+			dataBase.printValues("Error: bad input => " + line, NONVALID);
 		else
 		{
 			date = line.substr(0, delim);
 			newLine = trimLine(date);
 			if (parseDate(newLine, dataBase) == NONVALID)
+				continue ;
+			if (ft_isDigit(line.substr(delim + 1, line.length())) == -1)
 				continue ;
 			value = std::atof(line.substr(delim + 1, line.length()).c_str());
 			if (parseValue( value, dataBase) == NONVALID)
@@ -139,6 +168,7 @@ void	parseUserInput(std::ifstream& file)
 			newValue << value;
 			dataBase.printValues(newLine + '|' + newValue.str(), VALID);
 		}
+		loopRound++;
 	}
 }
 
@@ -146,14 +176,20 @@ int	main( int ac, char **av )
 {
 	if (ac != 2)
 	{
-		std::cerr << "Error, wrong number of arguments" << std::endl;
+		std::cerr << "Error: could not open file" << std::endl;
 		return (1);
 	}
 
 	std::ifstream file(av[1]);
 	if (!file.is_open())
 	{
-		std::cerr << "Error, user input file failed to open" << std::endl;
+		std::cerr << "Error: could not open file" << std::endl;
+		return (1);
+	}
+	if (file.peek() == std::ifstream::traits_type::eof())
+	{
+		std::cerr << "Error: file is empty" << std::endl;
+		file.close();
 		return (1);
 	}
 	parseUserInput(file);

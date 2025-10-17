@@ -6,7 +6,7 @@
 /*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:09:39 by proton            #+#    #+#             */
-/*   Updated: 2025/10/16 10:21:13 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/17 10:26:32 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ Btc::Btc()
 		date.erase();
 
 		delim = line.find(',');
-		if (line[delim] != ',')
+		if (delim == std::string::npos)
 		{
 			std::cerr << "Did not found the delimiter" << std::endl;
 			exit(1);
@@ -68,7 +68,7 @@ Btc&	Btc::operator=( const Btc& copy )
 
 	if (this != &copy)
 	{
-		return (*this);
+		this->_dataBase = copy._dataBase;
 	}
 	return (*this);
 }
@@ -101,7 +101,7 @@ void	Btc::printValues( std::string value, enum isValid flag )
 		std::cout << lowerBoundIt->first << " => " << BtcNumber << " = " << lowerBoundIt->second * BtcNumber << std::endl;
 		return ;
 	}
-	std::cout << search->first << " => " << BtcNumber << " = " << std::fixed << std::setprecision(2) << search->second * BtcNumber << std::endl;
+	std::cout << search->first << " => " << BtcNumber << " = " << search->second * BtcNumber << std::endl;
 	return ;
 }
 
