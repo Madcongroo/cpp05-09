@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 17:11:48 by proton            #+#    #+#             */
-/*   Updated: 2025/10/17 15:13:15 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/17 16:47:24 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,12 @@ int main(int ac, char **av)
     if (std::set<int>(sequenceVec.begin(), sequenceVec.end()).size() != sequenceVec.size())
     {
         std::cerr << "No duplicates allowed" << std::endl;
+        return (1);
+    }
+
+    if (sequence.size() <= 1)
+    {
+        std::cerr << "Error, not enough numbers to sort" << std::endl;
         return (1);
     }
     
