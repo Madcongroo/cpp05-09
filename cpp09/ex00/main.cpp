@@ -6,7 +6,7 @@
 /*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:10:05 by proton            #+#    #+#             */
-/*   Updated: 2025/10/17 11:48:31 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/22 14:56:49 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ enum isValid	parseYearMonthDay( int year, int month, int day, Btc& dataBase, std
 		dataBase.printValues("Error, date is wrong => " + date, NONVALID);
 		return (NONVALID);
 	}
-	else if (year < 2009 && month < 02)
+	else if (year < 2009 || (year == 2009 && day < 02))
 	{
 		dataBase.printValues("Error, date before bitcoin creation => " + date, NONVALID);
 		return (NONVALID);
@@ -39,10 +39,9 @@ enum isValid	parseYearMonthDay( int year, int month, int day, Btc& dataBase, std
 		dataBase.printValues("Error, day wrong format => " + date, NONVALID);
 		return (NONVALID);
 	}
-	else if ((month == 2 && ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)) && day > 29)
+	else if ((month == 2 && ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)))
 	{
-		dataBase.printValues("Error, february bissextile year => " + date, NONVALID);
-		return (NONVALID);
+		return (VALID);
 	}
 	else if (month == 2 && day > 28)
 	{
@@ -98,7 +97,7 @@ enum isValid	parseValue( float value, Btc& dataBase )
 	return (VALID);
 }
 
-std::string	trimLine( std::string& line )
+std::string	trimLine( std::string line )
 {
 	size_t		i = 0;
 	size_t		j = 0;
@@ -106,23 +105,30 @@ std::string	trimLine( std::string& line )
 
 	i = line.find_first_not_of(" \t");
 	j = line.find_last_not_of(" \t");
-
-	newLine = line.substr(i, j + 1);
+	newLine = line.substr(i, j - i + 1);
 
 	return (newLine);
 }
 
 int	ft_isDigit( std::string str )
 {
+	if (str.empty())
+	{
+		std::cerr << "Error: no value" << std::endl;
+		return (-1);
+	}
 	std::stringstream ss;
+	std::string	newstr;
 
-	ss.str(str);
+	newstr = trimLine(str);
+
+	ss.str(newstr);
 	float	test = 0;
 	
 	ss >> test;
 	if (!ss.eof())
 	{
-		std::cout << "Error: number wrong format" << std::endl;
+		std::cerr << "Error: number wrong format" << std::endl;
 		return (-1);
 	}
 
@@ -139,6 +145,7 @@ void	parseUserInput(std::ifstream& file)
 	std::string		newLine;
 	std::ostringstream	newValue;
 	size_t			loopRound = 0;
+	std::string		mockvalue;
 
 	while (std::getline(file, line))
 	{
@@ -149,7 +156,7 @@ void	parseUserInput(std::ifstream& file)
 		}
 		if (line.empty())
 		{
-			std::cout << "Error: empty line" << std::endl;
+			std::cerr << "Error: empty line" << std::endl;
 			continue;
 		}
 		value = 0;
@@ -166,7 +173,8 @@ void	parseUserInput(std::ifstream& file)
 				continue ;
 			if (ft_isDigit(line.substr(delim + 1, line.length())) == -1)
 				continue ;
-			value = std::atof(line.substr(delim + 1, line.length()).c_str());
+			mockvalue = trimLine(line.substr(delim + 1, line.length()).c_str());
+			value = std::atof(mockvalue.c_str());
 			if (parseValue( value, dataBase) == NONVALID)
 				continue ;
 			newValue << value;

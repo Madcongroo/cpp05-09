@@ -1,0 +1,60 @@
+# Dates antérieures à la première entrée de la DB (doit provoquer une erreur)
+2008-12-31 | 10
+
+# Exact match (si présent dans la DB)
+2009-01-02 | 5
+
+# Date entre deux clefs (doit utiliser la lower existante)
+2009-01-03 | 1
+
+# Gestion février (non-bissextile)
+2011-02-29 | 1
+
+# Gestion février (bissextile)
+2012-02-29 | 1
+
+# Mois à 30 jours mais jour 31 (invalid)
+2011-04-31 | 1
+2011-06-31 | 1
+2011-09-31 | 1
+
+# Jour 0 / mois 0 / jour > 31
+2011-01-00 | 1
+2011-00-10 | 1
+2011-01-32 | 1
+
+# Non-chiffres dans la date
+20ab-01-01 | 1
+
+# Lignes avec espaces en surplus (doivent être acceptées)
+ 2011-01-03  |   2 
+
+# Valeurs invalides (négative, trop grande, overflow, non-numérique)
+2012-01-11 | -5
+2012-01-11 | 1001
+2012-01-11 | 2147483648
+2012-01-11 | abc
+2012-01-11 |
+
+# Ligne sans séparateur '|' (malformée)
+2012-01-11 100
+
+# Date très ancienne
+1800-01-01 | 1
+
+# Date plus récente que la dernière entrée (doit utiliser la dernière date de la DB)
+2050-01-01 | 1
+
+# Quelques lignes valides récurrentes
+2011-01-03 | 3
+2011-01-03 | 2
+2011-01-03 | 1.2
+
+# Dates non conforme
+424-01-01 | 12
+
+# Devrait pas fonctionner
+2011-01-03 | 10.3abc
+
+
+# Fin du fichier

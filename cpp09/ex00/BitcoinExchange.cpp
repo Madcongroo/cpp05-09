@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:09:39 by proton            #+#    #+#             */
-/*   Updated: 2025/10/17 10:26:32 by proton           ###   ########.fr       */
+/*   Updated: 2025/10/22 14:57:23 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	Btc::printValues( std::string value, enum isValid flag )
 {
 	if (flag == NONVALID)
 	{
-		std::cout << value << std::endl;
+		std::cerr << value << std::endl;
 		return ;
 	}
 

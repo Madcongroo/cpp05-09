@@ -6,7 +6,7 @@
 /*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:51 by proton            #+#    #+#             */
-/*   Updated: 2025/10/17 13:23:06 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/22 11:50:56 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ int firstInputParsing( std::string& userInput )
 			i++;
 			continue ;
 		}
-
 		if (token != "+" && token != "-" && token != "*" && token != "/")
 		{
 			num = atoi(token.c_str());
-			if (num == 0)
+			if (num == 0 && token != "0")
 			{
 				std::cerr << "Error" << std::endl;
 				return (-1);

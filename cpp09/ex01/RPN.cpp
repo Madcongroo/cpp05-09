@@ -6,7 +6,7 @@
 /*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:09:09 by proton            #+#    #+#             */
-/*   Updated: 2025/10/17 13:40:35 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/22 11:53:40 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	Rpn::processCalculation( std::string& userInput )
 			stack.push(std::atoi(token.c_str()));
 		else
 		{
-			if (stack.size() != 2)
+			if (stack.size() < 2)
 			{
 				std::cout << "Error" << std::endl;
 				exit(EXIT_FAILURE);
@@ -86,6 +86,11 @@ int	Rpn::processCalculation( std::string& userInput )
 			else if (token == "/")
 			{
 				value2 = stack.top();
+				if (value2 == 0)
+				{
+					std::cerr << "Error" << std::endl;
+					exit(EXIT_FAILURE);
+				}
 				stack.pop();
 				value1 = stack.top();
 				result = value1 / value2;
