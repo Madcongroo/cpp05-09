@@ -6,7 +6,7 @@
 /*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 15:13:51 by proton            #+#    #+#             */
-/*   Updated: 2025/10/22 11:50:56 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/23 14:23:49 by bproton          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int firstInputParsing( std::string& userInput )
 	std::string token;
 	int		num;
 	size_t	i = 0;
+	size_t	calculationSize = 0;
 
 	while (i < userInput.size())
 	{
@@ -39,8 +40,14 @@ int firstInputParsing( std::string& userInput )
 				std::cerr << "Error" << std::endl;
 				exit (1);
 			}
+			calculationSize++;
 		}
 		i++;
+	}
+	if (calculationSize <= 1)
+	{
+		std::cerr << "Error" << std::endl;
+		return (-1);
 	}
 	return (0);
 }
