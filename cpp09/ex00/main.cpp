@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bproton <bproton@student.42.fr>            +#+  +:+       +#+        */
+/*   By: proton <proton@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 14:10:05 by proton            #+#    #+#             */
-/*   Updated: 2025/10/22 14:56:49 by bproton          ###   ########.fr       */
+/*   Updated: 2025/10/23 10:45:06 by proton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 {
 	if (date.empty())
 		return (NONVALID);
+
+	if (date.find(' ') != std::string::npos)
+	{
+		dataBase.printValues("Error, bad date format => " + date, NONVALID);
+		return (NONVALID);
+	}
 	
 	int	pos = 0;
 	std::string::size_type	delimiter = 0;
@@ -69,14 +75,28 @@ enum isValid	parseDate( std::string date, Btc& dataBase )
 		return (NONVALID);
 	}
 	year = std::atoi(date.substr(0, delimiter).c_str());
+	if (year == 0)
+	{
+		dataBase.printValues("Error, year wrong format => " + date, NONVALID);
+		return (NONVALID);
+	}
 	
 	pos = delimiter + 1;
 	delimiter = date.find('-', pos);
-
-	month = std::atoi(date.substr(pos, delimiter).c_str());
+	month = std::atoi(date.substr(pos, delimiter - pos).c_str());
+	if (month == 0)
+	{
+		dataBase.printValues("Error, month wrong format => " + date, NONVALID);
+		return (NONVALID);
+	}
+	
 	pos = delimiter + 1;
 	day = std::atoi(date.substr(pos).c_str());
-	
+	if (day == 0)
+	{
+		dataBase.printValues("Error, day wrong format => " + date, NONVALID);
+		return (NONVALID);
+	}
 	if (parseYearMonthDay(year, month, day, dataBase, date) == NONVALID)
 		return (NONVALID);
 	return (VALID);
@@ -168,6 +188,11 @@ void	parseUserInput(std::ifstream& file)
 		else
 		{
 			date = line.substr(0, delim);
+			if (date.empty())
+			{
+				dataBase.printValues("Error: no date", NONVALID);
+				continue ;
+			}
 			newLine = trimLine(date);
 			if (parseDate(newLine, dataBase) == NONVALID)
 				continue ;
